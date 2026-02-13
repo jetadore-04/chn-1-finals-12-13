@@ -434,7 +434,7 @@
         
         <div class="progress-card">
             <div class="progress-info">
-                <span id="questionCounter">Question 1 of 150</span>
+                <span id="questionCounter">Question 1 of 200</span>
                 <span id="scoreDisplay">Score: 0/0</span>
             </div>
             <div class="progress-bar-bg">
@@ -461,7 +461,6 @@
     </div>
     
     <script>
-        // Shuffle function
         function shuffleArray(array) {
             const newArray = [...array];
             for (let i = newArray.length - 1; i > 0; i--) {
@@ -472,814 +471,929 @@
         }
         
         const quizDataBase = [
-            // TUBERCULOSIS (TB)
+            // TUBERCULOSIS - PRC Level
             {
-                question: "What is the causative agent of tuberculosis?",
-                options: ["Mycobacterium leprae", "Mycobacterium tuberculosis", "Streptococcus pneumoniae", "Staphylococcus aureus"],
+                question: "A community health nurse conducting Active Case Finding for tuberculosis should prioritize which intervention?",
+                options: [
+                    "Conducting skin inspection through household visits in communities",
+                    "Conducting sputum examination through household visits in communities",
+                    "Conducting chest X-ray screening through household visits in communities",
+                    "Conducting blood culture through household visits in communities"
+                ],
                 correct: 1,
-                explanation: "Tuberculosis is caused by Mycobacterium tuberculosis, a bacteria spread through airborne droplets.",
-                category: "Communicable Diseases"
+                explanation: "Active Case Finding (ACF) for TB involves conducting sputum examination and identifying presumptive TB cases through systematic community screening and household visits.",
+                category: "TB - Interventions"
             },
             {
-                question: "How is tuberculosis primarily transmitted?",
-                options: ["Contaminated food", "Airborne droplet infection", "Direct skin contact", "Sexual contact"],
+                question: "Which of the following durations of persistent cough is considered a PRIMARY public health sign requiring TB screening?",
+                options: [
+                    "Cough for ≥ 1 week",
+                    "Cough for ≥ 2 weeks",
+                    "Cough for ≥ 3 weeks",
+                    "Cough for ≥ 4 weeks"
+                ],
                 correct: 1,
-                explanation: "TB is transmitted through airborne droplet infection when an infected person coughs, sneezes, or speaks.",
-                category: "Communicable Diseases"
+                explanation: "A persistent cough lasting 2 weeks or more is a key public health indicator requiring TB screening and evaluation.",
+                category: "TB - Signs & Symptoms"
             },
             {
-                question: "Which of the following is a key sign/symptom of tuberculosis?",
-                options: ["Cough for less than 1 week", "Cough ≥ 2 weeks", "Sudden high fever", "Skin rash"],
+                question: "What does the 'O' in DOTS specifically stand for in TB management?",
+                options: [
+                    "Ongoing",
+                    "Observed",
+                    "Organized",
+                    "Optimized"
+                ],
                 correct: 1,
-                explanation: "A persistent cough lasting 2 weeks or more is a key public health sign of TB.",
-                category: "Communicable Diseases"
+                explanation: "DOTS stands for Directly Observed Treatment, Short-course. The 'O' stands for Observed, meaning healthcare workers directly observe patients taking their medication.",
+                category: "TB - Interventions"
             },
             {
-                question: "What are the common symptoms of tuberculosis? (Select all that apply in the options)",
-                options: ["Hemoptysis, low-grade fever, weight loss, night sweats", "Diarrhea, vomiting, headache", "Skin lesions, muscle pain", "Seizures, confusion"],
+                question: "A CHN nurse educates a TB patient about preventing transmission. Which teaching is MOST critical?",
+                options: [
+                    "Cover mouth when coughing, ensure adequate ventilation, practice cough etiquette",
+                    "Cover mouth when coughing, take antibiotics regularly, drink plenty of water",
+                    "Cover mouth when coughing, wear mask at all times, avoid sunlight",
+                    "Cover mouth when coughing, isolate completely, limit fluid intake"
+                ],
                 correct: 0,
-                explanation: "TB presents with hemoptysis (coughing blood), low-grade fever, weight loss, and night sweats.",
-                category: "Communicable Diseases"
+                explanation: "Key TB prevention includes covering mouth/nose when coughing, ensuring proper ventilation, and practicing respiratory/cough etiquette to prevent airborne transmission.",
+                category: "TB - Interventions"
             },
             {
-                question: "What is Active Case Finding (ACF) in TB control?",
-                options: ["Waiting for patients to come to clinics", "Conducting skin inspections in communities", "Identifying TB cases through community screening and follow-up", "Providing free medication to all"],
-                correct: 2,
-                explanation: "ACF involves proactively identifying TB cases in communities through screening programs.",
-                category: "TB Interventions"
-            },
-            {
-                question: "What does DOTS stand for in TB treatment?",
-                options: ["Direct Observation Treatment Strategy", "Directly Observed Treatment, Short-course", "Daily Oral Treatment System", "Disease Observation and Tracking Service"],
+                question: "In TB contact tracing, the nurse should prioritize examining which group?",
+                options: [
+                    "All community members in the barangay",
+                    "Household members and close contacts of the index case",
+                    "All healthcare workers in the facility",
+                    "All children in nearby schools"
+                ],
                 correct: 1,
-                explanation: "DOTS stands for Directly Observed Treatment, Short-course - a TB control strategy.",
-                category: "TB Interventions"
+                explanation: "Contact tracing focuses on household members and close contacts of the TB patient (index case) as they have the highest risk of exposure and infection.",
+                category: "TB - Interventions"
             },
             {
-                question: "In TB nursing interventions, what does 'educate on covering the mouth' aim to prevent?",
-                options: ["Malnutrition", "Dehydration", "Transmission through droplets (ventilation, cough etiquette)", "Skin infections"],
-                correct: 2,
-                explanation: "Covering the mouth when coughing prevents airborne transmission of TB through respiratory droplets.",
-                category: "TB Interventions"
-            },
-            {
-                question: "What is contact tracing in TB management?",
-                options: ["Tracking patient medication intake", "Identifying and examining household members who may have been exposed", "Following up on patient appointments", "Recording patient contact information"],
+                question: "BCG vaccination given at birth primarily prevents which forms of tuberculosis?",
+                options: [
+                    "Pulmonary TB and pleural TB",
+                    "Miliary TB and TB meningitis",
+                    "Latent TB and active TB",
+                    "Drug-resistant TB and multi-drug resistant TB"
+                ],
                 correct: 1,
-                explanation: "Contact tracing involves identifying and examining household members and close contacts for TB exposure.",
-                category: "TB Interventions"
+                explanation: "BCG vaccination protects newborns primarily against severe forms of TB including miliary TB (disseminated) and TB meningitis.",
+                category: "TB - Interventions"
             },
             {
-                question: "Why is BCG vaccination given to newborns?",
-                options: ["To prevent all respiratory infections", "To prevent severe TB (miliary TB, TB meningitis)", "To cure existing TB", "To treat TB exposure"],
+                question: "When ensuring TB treatment adherence, what is the nurse's PRIMARY responsibility?",
+                options: [
+                    "Provide medication and monitor symptoms only",
+                    "Conduct household contact examination, teach self-care, ensure medication compliance",
+                    "Refer to physician and document treatment",
+                    "Administer injections and record vital signs"
+                ],
                 correct: 1,
-                explanation: "BCG vaccination protects newborns from severe forms of TB like miliary TB and TB meningitis.",
-                category: "TB Interventions"
-            },
-            {
-                question: "What is sputum sample collection used for in TB?",
-                options: ["To check blood sugar levels", "To identify TB bacteria and confirm diagnosis", "To measure lung capacity", "To test for allergies"],
-                correct: 1,
-                explanation: "Sputum samples are collected to identify TB bacteria and confirm the diagnosis through laboratory testing.",
-                category: "TB Interventions"
-            },
-            {
-                question: "What is the nurse's role in ensuring treatment adherence in TB?",
-                options: ["Ignore missed appointments", "Only provide medication", "Conduct household contact examination annually and teach self-care", "Hospitalize all patients"],
-                correct: 2,
-                explanation: "Nurses conduct contact examinations, teach self-care for hands/feet, and ensure adherence to treatment.",
-                category: "TB Interventions"
+                explanation: "Nurses ensure adherence through household contact examination (annually), teaching self-care for affected areas, and closely monitoring medication compliance.",
+                category: "TB - Interventions"
             },
             
-            // LEPROSY
+            // LEPROSY - PRC Level
             {
-                question: "What causes leprosy?",
-                options: ["Mycobacterium tuberculosis", "Mycobacterium leprae", "Streptococcus pyogenes", "Treponema pallidum"],
+                question: "The PRIMARY mode of transmission for leprosy is:",
+                options: [
+                    "Airborne droplet infection from prolonged exposure",
+                    "Prolonged close contact with infected individuals",
+                    "Direct skin-to-skin contact with lesions",
+                    "Contaminated fomites and personal items"
+                ],
                 correct: 1,
-                explanation: "Leprosy is caused by Mycobacterium leprae bacteria.",
-                category: "Communicable Diseases"
+                explanation: "Leprosy (Hansen's disease) is transmitted through prolonged close contact with an infected person, not casual contact.",
+                category: "Leprosy - Transmission"
             },
             {
-                question: "How is leprosy transmitted?",
-                options: ["Airborne droplets", "Prolonged close contact", "Contaminated water", "Insect bites"],
+                question: "A patient presents with skin patches that have lost sensation. This finding is MOST characteristic of:",
+                options: [
+                    "Tuberculosis with skin manifestations",
+                    "Leprosy (Hansen's disease)",
+                    "Schistosomiasis dermatitis",
+                    "Dengue hemorrhagic fever"
+                ],
                 correct: 1,
-                explanation: "Leprosy is transmitted through prolonged close contact with an infected person.",
-                category: "Communicable Diseases"
+                explanation: "Skin patches with loss of sensation (anesthesia) along with nerve enlargement and muscle weakness are hallmark signs of leprosy.",
+                category: "Leprosy - Signs & Symptoms"
             },
             {
-                question: "What are the characteristic symptoms of leprosy?",
-                options: ["Fever and cough", "Skin patches with loss of sensation, nerve enlargement, muscle weakness", "Diarrhea and vomiting", "Headache and dizziness"],
+                question: "Early case detection for leprosy is BEST accomplished through:",
+                options: [
+                    "Annual blood testing in endemic areas",
+                    "Systematic skin inspection in communities",
+                    "Routine chest X-rays for at-risk populations",
+                    "Mass serological screening programs"
+                ],
                 correct: 1,
-                explanation: "Leprosy presents with skin patches lacking sensation, nerve enlargement, and muscle weakness.",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "What is the primary nursing intervention for leprosy case detection?",
-                options: ["Blood testing", "Early case detection through skin inspection in communities", "Chest X-ray", "Urine analysis"],
-                correct: 1,
-                explanation: "Early case detection through systematic skin inspection in communities is key to leprosy control.",
-                category: "Leprosy Interventions"
+                explanation: "Early leprosy case detection is achieved through systematic skin inspection in communities to identify characteristic skin patches and nerve involvement.",
+                category: "Leprosy - Interventions"
             },
             {
                 question: "What does MDT stand for in leprosy treatment?",
-                options: ["Medical Diagnosis Test", "Multi-Drug Therapy", "Mandatory Detection Treatment", "Monitored Daily Treatment"],
+                options: [
+                    "Monitored Drug Therapy",
+                    "Multi-Drug Therapy",
+                    "Mandatory Detection Treatment",
+                    "Multi-Dose Treatment"
+                ],
                 correct: 1,
-                explanation: "MDT stands for Multi-Drug Therapy, the standard treatment regimen for leprosy.",
-                category: "Leprosy Interventions"
+                explanation: "MDT (Multi-Drug Therapy) is the standard treatment combining multiple antibiotics to cure leprosy and prevent drug resistance.",
+                category: "Leprosy - Interventions"
             },
             {
-                question: "Why is ROM exercise important in leprosy care?",
-                options: ["To increase appetite", "To prevent deformity through Range of Motion exercises and wound care", "To improve vision", "To reduce fever"],
+                question: "ROM exercises are critical in leprosy care primarily to:",
+                options: [
+                    "Improve cardiovascular fitness and stamina",
+                    "Prevent deformities and maintain joint mobility",
+                    "Enhance medication absorption",
+                    "Reduce bacterial load in affected tissues"
+                ],
                 correct: 1,
-                explanation: "ROM (Range of Motion) exercises prevent deformities, along with proper wound care in leprosy patients.",
-                category: "Leprosy Interventions"
+                explanation: "Range of Motion (ROM) exercises prevent deformities in leprosy patients by maintaining joint flexibility and preventing contractures, especially when combined with wound care.",
+                category: "Leprosy - Interventions"
             },
             {
-                question: "What is the role of health education in leprosy management?",
-                options: ["Teaching surgical techniques", "Reducing stigma through health education", "Prescribing medication", "Conducting laboratory tests"],
+                question: "The MOST important reason for health education in leprosy management is to:",
+                options: [
+                    "Improve treatment compliance rates",
+                    "Reduce stigma and promote early treatment seeking",
+                    "Increase community awareness of transmission",
+                    "Enhance medication adherence"
+                ],
                 correct: 1,
-                explanation: "Health education is crucial to reduce stigma associated with leprosy and promote early treatment.",
-                category: "Leprosy Interventions"
+                explanation: "Health education in leprosy is crucial for reducing stigma, which is a major barrier to early diagnosis and treatment initiation.",
+                category: "Leprosy - Interventions"
             },
             {
-                question: "What self-care should nurses teach leprosy patients?",
-                options: ["How to perform surgery", "Self-care for hands and feet to avoid injuries", "How to prepare medication", "Laboratory techniques"],
+                question: "When teaching self-care to a leprosy patient with loss of sensation, the nurse should emphasize:",
+                options: [
+                    "Daily exercise and physical therapy routines",
+                    "Careful inspection and protection of hands and feet to prevent injuries",
+                    "Frequent handwashing and hygiene practices",
+                    "Regular application of topical antibiotics"
+                ],
                 correct: 1,
-                explanation: "Nurses teach patients self-care for hands and feet to prevent injuries due to loss of sensation.",
-                category: "Leprosy Interventions"
-            },
-            
-            // SCHISTOSOMIASIS
-            {
-                question: "What causes schistosomiasis?",
-                options: ["Bacteria", "Virus", "Schistosoma japonicum (parasite)", "Fungus"],
-                correct: 2,
-                explanation: "Schistosomiasis is caused by Schistosoma japonicum, a parasitic flatworm.",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "How is schistosomiasis transmitted?",
-                options: ["Airborne", "Skin penetration of cercariae in infested water", "Food contamination", "Sexual contact"],
-                correct: 1,
-                explanation: "Schistosomiasis is transmitted when cercariae (larval form) penetrate the skin during contact with infested water.",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "What are the symptoms of schistosomiasis?",
-                options: ["Cough and fever", "Bloody diarrhea, abdominal pain, hepatosplenomegaly", "Skin rash and itching only", "Seizures"],
-                correct: 1,
-                explanation: "Schistosomiasis causes bloody diarrhea, abdominal pain, and enlarged liver/spleen (hepatosplenomegaly).",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "What is Mass Drug Administration (MDA) in schistosomiasis control?",
-                options: ["Giving antibiotics to everyone", "Coordinating mass treatment with Praziquantel in endemic areas", "Vaccinating all children", "Distributing vitamins"],
-                correct: 1,
-                explanation: "MDA involves coordinating mass treatment with Praziquantel in areas where schistosomiasis is endemic.",
-                category: "Schistosomiasis Interventions"
-            },
-            {
-                question: "What health teaching is important to prevent schistosomiasis?",
-                options: ["Avoid all water", "Avoid wading in infested water bodies and use proper sanitation", "Drink more water", "Take daily vitamins"],
-                correct: 1,
-                explanation: "Prevention includes avoiding wading in infested water bodies and promoting proper sanitation.",
-                category: "Schistosomiasis Interventions"
-            },
-            {
-                question: "What environmental intervention helps control schistosomiasis?",
-                options: ["Air purification", "Promote sanitary toilets and proper waste disposal", "Indoor spraying", "Noise reduction"],
-                correct: 1,
-                explanation: "Promoting sanitary toilets and proper waste disposal prevents contamination of water bodies.",
-                category: "Schistosomiasis Interventions"
-            },
-            {
-                question: "What is snail control in schistosomiasis prevention?",
-                options: ["Removing all aquatic life", "Conducting environmental sanitation and snail control measures", "Eliminating all water sources", "Building more dams"],
-                correct: 1,
-                explanation: "Snail control and environmental sanitation reduce the intermediate host (snails) that harbor the parasite.",
-                category: "Schistosomiasis Interventions"
-            },
-            {
-                question: "Why is preventing cattle/water buffalo contamination important in schistosomiasis control?",
-                options: ["To improve milk production", "To engage communities in preventing animal contamination of water", "To increase livestock", "To improve meat quality"],
-                correct: 1,
-                explanation: "Preventing cattle/water buffalo from contaminating water bodies reduces parasite transmission.",
-                category: "Schistosomiasis Interventions"
+                explanation: "Loss of sensation increases injury risk. Patients must learn to carefully inspect and protect hands/feet from burns, cuts, and pressure injuries.",
+                category: "Leprosy - Interventions"
             },
             
-            // LYMPHATIC FILARIASIS
+            // SCHISTOSOMIASIS - PRC Level
             {
-                question: "How is lymphatic filariasis transmitted?",
-                options: ["Contaminated food", "Mosquito bites (night-biting)", "Direct contact", "Airborne"],
+                question: "The infective stage of Schistosoma japonicum that penetrates human skin is called:",
+                options: [
+                    "Miracidia",
+                    "Cercariae",
+                    "Sporocysts",
+                    "Metacercariae"
+                ],
                 correct: 1,
-                explanation: "Lymphatic filariasis is transmitted through night-biting mosquitoes (Anopheles species).",
-                category: "Communicable Diseases"
+                explanation: "Cercariae are the free-swimming larval forms that emerge from infected snails and penetrate human skin during water contact.",
+                category: "Schistosomiasis - Transmission"
             },
             {
-                question: "What are the symptoms of lymphatic filariasis?",
-                options: ["Cough and fever", "Chronic limb swelling, lymphangitis, fever", "Diarrhea", "Skin rash"],
+                question: "A patient from an endemic area presents with bloody diarrhea, abdominal pain, and hepatosplenomegaly. These findings are MOST consistent with:",
+                options: [
+                    "Lymphatic filariasis",
+                    "Schistosomiasis",
+                    "Malaria",
+                    "Dengue hemorrhagic fever"
+                ],
                 correct: 1,
-                explanation: "Lymphatic filariasis causes chronic limb swelling (elephantiasis), lymphangitis, and fever.",
-                category: "Communicable Diseases"
+                explanation: "Schistosomiasis (intestinal form) presents with bloody diarrhea, abdominal pain, and enlarged liver/spleen (hepatosplenomegaly).",
+                category: "Schistosomiasis - Signs & Symptoms"
             },
             {
-                question: "What is Annual Mass Drug Administration (MDA) for filariasis?",
-                options: ["Yearly vaccination", "Annual distribution of DEC + Albendazole to prevent infection", "Monthly check-ups", "Daily medication"],
+                question: "Mass Drug Administration (MDA) for schistosomiasis in endemic areas uses which medication?",
+                options: [
+                    "Albendazole",
+                    "Praziquantel",
+                    "Mebendazole",
+                    "Diethylcarbamazine (DEC)"
+                ],
                 correct: 1,
-                explanation: "Annual MDA involves distributing DEC (Diethylcarbamazine) plus Albendazole to prevent and control filariasis.",
-                category: "Filariasis Interventions"
+                explanation: "Praziquantel is the drug of choice for Mass Drug Administration in schistosomiasis control programs in endemic areas.",
+                category: "Schistosomiasis - Interventions"
             },
             {
-                question: "What mosquito control measures prevent lymphatic filariasis?",
-                options: ["Using air conditioning only", "Educate about mosquito control (bed nets, repellents)", "Avoiding all outdoor activities", "Taking daily vitamins"],
+                question: "To prevent schistosomiasis transmission, the MOST important health teaching is:",
+                options: [
+                    "Boil all drinking water for 10 minutes",
+                    "Avoid wading in infested water bodies and use proper sanitation",
+                    "Use mosquito nets during sleep",
+                    "Practice strict hand hygiene after toilet use"
+                ],
                 correct: 1,
-                explanation: "Mosquito control includes using bed nets, repellents, and eliminating breeding sites.",
-                category: "Filariasis Interventions"
+                explanation: "Preventing schistosomiasis requires avoiding contact with infested water bodies and promoting proper sanitation to prevent water contamination.",
+                category: "Schistosomiasis - Interventions"
             },
             {
-                question: "What hygiene management is important for lymphedema in filariasis?",
-                options: ["Ignore swelling", "Provide hygiene management for lymphedema (washing & drying)", "Apply hot compress", "Restrict all movement"],
+                question: "Environmental sanitation for schistosomiasis control should focus on:",
+                options: [
+                    "Fogging to eliminate vectors",
+                    "Snail control and proper waste disposal to prevent water contamination",
+                    "Indoor residual spraying of insecticides",
+                    "Distribution of insecticide-treated nets"
+                ],
                 correct: 1,
-                explanation: "Proper hygiene management includes regular washing and drying of affected limbs to prevent infections.",
-                category: "Filariasis Interventions"
+                explanation: "Schistosomiasis control requires snail control (intermediate host) and proper sanitation to prevent human waste from contaminating water sources.",
+                category: "Schistosomiasis - Interventions"
             },
             {
-                question: "What environmental intervention helps reduce filariasis transmission?",
-                options: ["Indoor air purification", "Conduct environmental clean-up to reduce mosquito breeding sites", "Increase humidity", "Plant more trees"],
+                question: "Community engagement in schistosomiasis prevention should emphasize:",
+                options: [
+                    "Daily prophylactic medication for all residents",
+                    "Preventing cattle and water buffalo from contaminating water sources",
+                    "Universal vaccination of livestock",
+                    "Eliminating all aquatic vegetation"
+                ],
                 correct: 1,
-                explanation: "Environmental clean-up eliminates standing water and reduces mosquito breeding sites.",
-                category: "Filariasis Interventions"
-            },
-            {
-                question: "Why is health education important for filariasis prevention?",
-                options: ["To promote surgery", "To educate on early consultation and prevention methods", "To increase medication sales", "To build hospitals"],
-                correct: 1,
-                explanation: "Health education promotes early consultation and teaches prevention methods to control filariasis.",
-                category: "Filariasis Interventions"
+                explanation: "Preventing animal (cattle, water buffalo) defecation in water sources is crucial as these animals are also reservoir hosts for Schistosoma japonicum.",
+                category: "Schistosomiasis - Interventions"
             },
             
-            // DENGUE
+            // LYMPHATIC FILARIASIS - PRC Level
             {
-                question: "What virus causes dengue?",
-                options: ["Influenza virus", "Dengue virus (Aedes mosquito)", "Rabies virus", "HIV"],
+                question: "The vector responsible for lymphatic filariasis transmission in the Philippines is:",
+                options: [
+                    "Aedes aegypti mosquitoes (day-biting)",
+                    "Anopheles mosquitoes (night-biting)",
+                    "Culex mosquitoes (evening-biting)",
+                    "Mansonia mosquitoes (dusk-biting)"
+                ],
                 correct: 1,
-                explanation: "Dengue is caused by dengue virus transmitted by Aedes mosquitoes (Aedes aegypti).",
-                category: "Communicable Diseases"
+                explanation: "Lymphatic filariasis is transmitted by night-biting Anopheles mosquitoes in most endemic areas including the Philippines.",
+                category: "Filariasis - Transmission"
             },
             {
-                question: "How is dengue transmitted?",
-                options: ["Airborne", "Day-biting mosquitoes", "Contaminated food", "Direct contact"],
+                question: "A patient presents with chronic limb swelling, lymphangitis, and recurrent fever. These findings suggest:",
+                options: [
+                    "Dengue hemorrhagic fever",
+                    "Lymphatic filariasis (elephantiasis)",
+                    "Deep vein thrombosis",
+                    "Leprosy with nerve damage"
+                ],
                 correct: 1,
-                explanation: "Dengue is transmitted by day-biting Aedes mosquitoes, particularly Aedes aegypti.",
-                category: "Communicable Diseases"
+                explanation: "Chronic limb swelling (elephantiasis), lymphangitis (inflamed lymphatic vessels), and fever are characteristic of lymphatic filariasis.",
+                category: "Filariasis - Signs & Symptoms"
             },
             {
-                question: "What are the symptoms of dengue?",
-                options: ["Cough and cold", "Sudden fever, rash, nose/gum bleeding, severe abdominal pain, persistent vomiting", "Diarrhea only", "Headache only"],
+                question: "Annual Mass Drug Administration (MDA) for filariasis includes which medication combination?",
+                options: [
+                    "Praziquantel + Albendazole",
+                    "DEC (Diethylcarbamazine) + Albendazole",
+                    "Ivermectin + Albendazole",
+                    "Artemisinin + Albendazole"
+                ],
                 correct: 1,
-                explanation: "Dengue presents with sudden fever, rash, bleeding (nose/gums), severe abdominal pain, and persistent vomiting.",
-                category: "Communicable Diseases"
+                explanation: "Annual MDA for lymphatic filariasis uses DEC (Diethylcarbamazine) combined with Albendazole to kill microfilariae and prevent transmission.",
+                category: "Filariasis - Interventions"
             },
             {
-                question: "What does the DOH 4S Strategy for dengue prevention include? (All components)",
-                options: ["Search and destroy breeding sites, Seek early consultation, Secure self-protection, Support fogging", "Spray, Spray, Spray, Spray", "Sleep, Sit, Stand, Squat", "Sanitize, Sterilize, Store, Seal"],
-                correct: 0,
-                explanation: "DOH 4S Strategy: Search & destroy mosquito breeding sites, Seek early consultation, Secure self-protection (mosquito repellents), Support fogging during outbreaks.",
-                category: "Dengue Interventions"
+                question: "Mosquito control education for filariasis prevention should emphasize:",
+                options: [
+                    "Indoor residual spraying only",
+                    "Use of bed nets, repellents, and elimination of breeding sites",
+                    "Fogging during outbreaks only",
+                    "Daytime mosquito avoidance"
+                ],
+                correct: 1,
+                explanation: "Comprehensive mosquito control includes bed nets (especially at night), repellents, and eliminating standing water breeding sites.",
+                category: "Filariasis - Interventions"
             },
             {
-                question: "What is the first 'S' in the DOH 4S Strategy?",
-                options: ["Sleep well", "Search & destroy mosquito breeding sites", "Stay indoors", "Sanitize hands"],
+                question: "For patients with established lymphedema from filariasis, the PRIMARY nursing intervention is:",
+                options: [
+                    "Surgical consultation for debridement",
+                    "Hygiene management through regular washing and drying of affected limbs",
+                    "Antibiotic prophylaxis to prevent infections",
+                    "Elastic compression bandaging"
+                ],
                 correct: 1,
-                explanation: "The first S is 'Search and destroy' - eliminating mosquito breeding sites by removing stagnant water.",
-                category: "Dengue Interventions"
+                explanation: "Hygiene management (regular washing and thorough drying) of affected limbs prevents secondary bacterial infections and manages lymphedema.",
+                category: "Filariasis - Interventions"
             },
             {
-                question: "Why is 'Seek early consultation' important in dengue management?",
-                options: ["To get medication faster", "Early detection and treatment prevent severe dengue complications", "To avoid hospital costs", "To get time off work"],
+                question: "Environmental interventions to reduce filariasis transmission should prioritize:",
+                options: [
+                    "Indoor air quality improvement",
+                    "Environmental clean-up to reduce mosquito breeding sites",
+                    "Soil treatment with pesticides",
+                    "Water chlorination programs"
+                ],
                 correct: 1,
-                explanation: "Seeking early consultation allows early detection and treatment, preventing progression to severe dengue.",
-                category: "Dengue Interventions"
-            },
-            {
-                question: "What does 'Secure self-protection' mean in dengue prevention?",
-                options: ["Wearing protective gear in hospitals", "Using mosquito repellents and protective clothing", "Getting insurance", "Taking vitamins"],
-                correct: 1,
-                explanation: "Self-protection includes using mosquito repellents, wearing long sleeves, and using bed nets.",
-                category: "Dengue Interventions"
-            },
-            {
-                question: "When is 'Support fogging' recommended in the 4S strategy?",
-                options: ["Daily in all areas", "During dengue outbreaks to reduce adult mosquito population", "Never recommended", "Only during rainy season"],
-                correct: 1,
-                explanation: "Fogging is supported during outbreaks to quickly reduce the adult mosquito population.",
-                category: "Dengue Interventions"
-            },
-            {
-                question: "What should nurses advise about fluid intake in dengue patients?",
-                options: ["Restrict all fluids", "Advise increased fluid intake to prevent dehydration", "Only IV fluids", "No special instructions"],
-                correct: 1,
-                explanation: "Increased fluid intake is crucial to prevent dehydration from fever and maintain circulation.",
-                category: "Dengue Interventions"
-            },
-            {
-                question: "What warning signs of severe dengue should nurses monitor?",
-                options: ["Mild headache", "Severe abdominal pain, persistent vomiting, bleeding, restlessness", "Slight fever", "Dry skin"],
-                correct: 1,
-                explanation: "Warning signs include severe abdominal pain, persistent vomiting, bleeding, and restlessness indicating severe dengue.",
-                category: "Dengue Interventions"
-            },
-            {
-                question: "What community education should nurses provide for dengue prevention?",
-                options: ["Avoid all mosquitoes", "Community education on eliminating stagnant water", "Stay indoors always", "Take daily medication"],
-                correct: 1,
-                explanation: "Educating communities to eliminate stagnant water (breeding sites) is key to dengue prevention.",
-                category: "Dengue Interventions"
+                explanation: "Environmental clean-up eliminating standing water and mosquito breeding sites is essential for filariasis vector control.",
+                category: "Filariasis - Interventions"
             },
             
-            // MALARIA
+            // DENGUE - PRC Level (DOH 4S Strategy)
             {
-                question: "What causes malaria?",
-                options: ["Bacteria", "Plasmodium spp. (parasite)", "Virus", "Fungus"],
+                question: "In the DOH 4S Strategy for dengue prevention, what does the FIRST 'S' represent?",
+                options: [
+                    "Sanitize breeding sites",
+                    "Search and destroy mosquito breeding sites",
+                    "Secure immunization",
+                    "Screen for dengue symptoms"
+                ],
                 correct: 1,
-                explanation: "Malaria is caused by Plasmodium species parasites transmitted by Anopheles mosquitoes.",
-                category: "Communicable Diseases"
+                explanation: "The first S in the 4S Strategy is 'Search and destroy' - actively finding and eliminating mosquito breeding sites (stagnant water).",
+                category: "Dengue - 4S Strategy"
             },
             {
-                question: "How is malaria transmitted?",
-                options: ["Contaminated food", "Night-biting Anopheles mosquitoes", "Direct contact", "Airborne"],
+                question: "The SECOND 'S' in the DOH 4S Strategy emphasizes:",
+                options: [
+                    "Sanitize surroundings daily",
+                    "Seek early consultation for fever",
+                    "Screen all household members",
+                    "Supervise vector control"
+                ],
                 correct: 1,
-                explanation: "Malaria is transmitted through the bite of infected night-biting Anopheles mosquitoes.",
-                category: "Communicable Diseases"
+                explanation: "The second S is 'Seek early consultation' - encouraging people to consult healthcare providers immediately when fever develops.",
+                category: "Dengue - 4S Strategy"
             },
             {
-                question: "What are the characteristic symptoms of malaria?",
-                options: ["Constant fever", "Recurrent fever (cyclic), chills and sweating, splenomegaly", "Cough and cold", "Diarrhea"],
+                question: "The THIRD 'S' in the DOH 4S Strategy refers to:",
+                options: [
+                    "Sanitation of water containers",
+                    "Secure self-protection from mosquito bites",
+                    "Screen doors and windows",
+                    "Surveillance of dengue cases"
+                ],
                 correct: 1,
-                explanation: "Malaria presents with cyclic/recurrent fever, chills, sweating episodes, and enlarged spleen.",
-                category: "Communicable Diseases"
+                explanation: "The third S is 'Secure self-protection' - using mosquito repellents, wearing protective clothing, and using bed nets.",
+                category: "Dengue - 4S Strategy"
             },
             {
-                question: "What is RDT screening in malaria control?",
-                options: ["Random drug testing", "Rapid Diagnostic Test screening in endemic areas", "Routine dental testing", "Radiation detection test"],
+                question: "The FOURTH 'S' in the DOH 4S Strategy involves:",
+                options: [
+                    "Sanitize all water sources",
+                    "Support fogging during outbreaks",
+                    "Screen blood for dengue virus",
+                    "Seal water containers"
+                ],
                 correct: 1,
-                explanation: "RDT (Rapid Diagnostic Test) screening allows quick malaria diagnosis in endemic areas.",
-                category: "Malaria Interventions"
+                explanation: "The fourth S is 'Support fogging' - participating in fogging operations during dengue outbreaks to reduce adult mosquito populations.",
+                category: "Dengue - 4S Strategy"
             },
             {
-                question: "What medication is used in Artemisinin Combination Therapy (ACT)?",
-                options: ["Antibiotics", "ACT for confirmed malaria cases", "Antiviral drugs", "Painkillers"],
+                question: "A dengue patient should be advised to increase fluid intake primarily to:",
+                options: [
+                    "Improve appetite and nutrition",
+                    "Prevent dehydration and maintain adequate circulation",
+                    "Enhance immune system function",
+                    "Facilitate toxin elimination"
+                ],
                 correct: 1,
-                explanation: "ACT (Artemisinin Combination Therapy) is the recommended treatment for confirmed malaria cases.",
-                category: "Malaria Interventions"
+                explanation: "Increased fluid intake prevents dehydration from fever and plasma leakage, maintaining circulatory volume in dengue.",
+                category: "Dengue - Management"
             },
             {
-                question: "What are Insecticide-Treated Nets (ITNs) used for?",
-                options: ["Catching fish", "Preventing malaria by protecting from mosquito bites during sleep", "Decorating homes", "Storing food"],
+                question: "Which finding is a WARNING SIGN of severe dengue requiring immediate attention?",
+                options: [
+                    "Mild headache and muscle pain",
+                    "Severe abdominal pain and persistent vomiting",
+                    "Low-grade fever and rash",
+                    "Mild thrombocytopenia"
+                ],
                 correct: 1,
-                explanation: "ITNs protect people from mosquito bites during sleep when Anopheles mosquitoes are most active.",
-                category: "Malaria Interventions"
+                explanation: "Warning signs of severe dengue include severe abdominal pain, persistent vomiting, bleeding manifestations, and restlessness indicating plasma leakage.",
+                category: "Dengue - Management"
             },
             {
-                question: "What is Indoor Residual Spraying (IRS)?",
-                options: ["Cleaning floors", "Spraying insecticide inside homes to kill mosquitoes", "Air freshening", "Painting walls"],
+                question: "Community education for dengue prevention should PRIMARILY focus on:",
+                options: [
+                    "Daily use of insect repellent",
+                    "Eliminating stagnant water sources where mosquitoes breed",
+                    "Indoor residual spraying schedules",
+                    "Personal protective equipment use"
+                ],
                 correct: 1,
-                explanation: "IRS involves spraying long-lasting insecticides on indoor surfaces to kill mosquitoes that rest there.",
-                category: "Malaria Interventions"
-            },
-            {
-                question: "What health education should nurses provide about malaria prevention?",
-                options: ["Avoid all outdoor activities", "Health education on avoiding forested mosquito habitats and using protection", "Move to cities", "Take daily medication without diagnosis"],
-                correct: 1,
-                explanation: "Education includes avoiding high-risk areas, using bed nets, repellents, and seeking early treatment.",
-                category: "Malaria Interventions"
-            },
-            
-            // RABIES
-            {
-                question: "How is rabies transmitted?",
-                options: ["Airborne", "Bite/saliva of rabid animals", "Contaminated water", "Sexual contact"],
-                correct: 1,
-                explanation: "Rabies is transmitted through the bite or saliva of infected (rabid) animals entering wounds.",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "What are the late-stage symptoms of rabies?",
-                options: ["Mild fever", "Hydrophobia, aerophobia, confusion, seizures", "Skin rash", "Diarrhea"],
-                correct: 1,
-                explanation: "Late-stage rabies causes hydrophobia (fear of water), aerophobia (fear of air), confusion, and seizures.",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "What is the immediate nursing intervention for a rabies bite?",
-                options: ["Apply bandage immediately", "Provide wound care immediately (10-15 minutes washing)", "Give oral antibiotics", "Wait and observe"],
-                correct: 1,
-                explanation: "Immediate wound care involves thorough washing for 10-15 minutes with soap and water.",
-                category: "Rabies Interventions"
-            },
-            {
-                question: "What bite category requires Post-Exposure Prophylaxis (PEP)?",
-                options: ["No contact with animal", "Category III bites (deep wounds, multiple bites)", "Minor scratches", "Animal licking intact skin"],
-                correct: 1,
-                explanation: "Category III bites (deep wounds, multiple bites, bites on head/neck) require immediate PEP.",
-                category: "Rabies Interventions"
-            },
-            {
-                question: "What does PEP include for rabies prevention?",
-                options: ["Antibiotics only", "Rabies Immunoglobulin for Category III bites and vaccine series", "Pain medication", "Tetanus shot only"],
-                correct: 1,
-                explanation: "PEP includes Rabies Immunoglobulin (for Category III) and a series of rabies vaccines.",
-                category: "Rabies Interventions"
-            },
-            {
-                question: "What community education is important for rabies prevention?",
-                options: ["Avoid all animals", "Educate on responsible pet ownership and vaccination campaigns", "Kill all stray animals", "Never touch any animal"],
-                correct: 1,
-                explanation: "Education includes responsible pet ownership, animal vaccination, and avoiding stray animals.",
-                category: "Rabies Interventions"
-            },
-            {
-                question: "What should nurses do regarding dog vaccination in rabies prevention?",
-                options: ["Ignore animal health", "Support dog vaccination campaigns", "Focus only on human vaccination", "Recommend euthanizing all dogs"],
-                correct: 1,
-                explanation: "Supporting dog vaccination campaigns is crucial for rabies prevention and control in communities.",
-                category: "Rabies Interventions"
-            },
-            {
-                question: "Where should animal bite cases be reported?",
-                options: ["Nowhere - keep private", "Report bite cases to the Animal Bite Treatment Center (ABTC)", "Only to family", "Social media"],
-                correct: 1,
-                explanation: "All animal bite cases should be reported to the Animal Bite Treatment Center (ABTC) for proper management.",
-                category: "Rabies Interventions"
+                explanation: "The most effective dengue prevention is eliminating stagnant water (containers, tires, etc.) where Aedes mosquitoes breed.",
+                category: "Dengue - Prevention"
             },
             
-            // HIV/AIDS
+            // MALARIA - PRC Level
             {
-                question: "How is HIV transmitted?",
-                options: ["Mosquito bites", "Sexual contact, blood, needles, mother-to-child", "Airborne", "Sharing food"],
+                question: "RDT screening for malaria refers to:",
+                options: [
+                    "Routine Diagnostic Testing",
+                    "Rapid Diagnostic Test",
+                    "Regional Disease Tracking",
+                    "Routine Detection Technique"
+                ],
                 correct: 1,
-                explanation: "HIV is transmitted through sexual contact, contaminated blood/needles, and from mother to child.",
-                category: "Communicable Diseases"
+                explanation: "RDT stands for Rapid Diagnostic Test, allowing quick malaria diagnosis in endemic areas without microscopy.",
+                category: "Malaria - Diagnosis"
             },
             {
-                question: "What are the symptoms of HIV/AIDS?",
-                options: ["Immediate severe illness", "Fever, weight loss, opportunistic infections", "Skin rash only", "Headache only"],
+                question: "The recommended treatment for confirmed malaria cases is:",
+                options: [
+                    "Antibiotics combination therapy",
+                    "Artemisinin Combination Therapy (ACT)",
+                    "Antiretroviral therapy",
+                    "Antifungal combination therapy"
+                ],
                 correct: 1,
-                explanation: "HIV/AIDS presents with fever, weight loss, and increased susceptibility to opportunistic infections.",
-                category: "Communicable Diseases"
+                explanation: "ACT (Artemisinin Combination Therapy) is the WHO-recommended first-line treatment for uncomplicated malaria.",
+                category: "Malaria - Treatment"
             },
             {
-                question: "What does HTC stand for in HIV prevention?",
-                options: ["Health Treatment Center", "HIV testing and counseling", "Hospital Trauma Care", "Home Treatment Course"],
+                question: "Insecticide-Treated Nets (ITNs) prevent malaria transmission by:",
+                options: [
+                    "Killing all mosquitoes in the area",
+                    "Protecting sleeping individuals from night-biting Anopheles mosquitoes",
+                    "Repelling mosquitoes from entering homes",
+                    "Preventing mosquito breeding"
+                ],
                 correct: 1,
-                explanation: "HTC stands for HIV Testing and Counseling, a key prevention and early detection strategy.",
-                category: "HIV Interventions"
+                explanation: "ITNs protect people during sleep when Anopheles mosquitoes (which transmit malaria) are most active at night.",
+                category: "Malaria - Prevention"
             },
             {
-                question: "What is ART in HIV treatment?",
-                options: ["Artificial Reproductive Technology", "Antiretroviral Therapy", "Advanced Radiation Treatment", "Assisted Recovery Treatment"],
+                question: "Indoor Residual Spraying (IRS) for malaria control involves:",
+                options: [
+                    "Spraying outdoor vegetation with insecticides",
+                    "Spraying insecticides on interior walls and surfaces where mosquitoes rest",
+                    "Spraying water sources to kill larvae",
+                    "Aerial spraying of communities"
+                ],
                 correct: 1,
-                explanation: "ART (Antiretroviral Therapy) suppresses HIV replication and helps maintain immune function.",
-                category: "HIV Interventions"
+                explanation: "IRS involves spraying long-lasting insecticides on indoor walls and surfaces where Anopheles mosquitoes rest after feeding.",
+                category: "Malaria - Prevention"
             },
             {
-                question: "What safe sex practice should nurses educate about for HIV prevention?",
-                options: ["Abstinence only", "Educate on safe sex practices and condom use", "No education needed", "Avoid all relationships"],
+                question: "Health education for malaria prevention in endemic areas should emphasize:",
+                options: [
+                    "Complete avoidance of all outdoor activities",
+                    "Avoiding forested mosquito habitats and using bed nets and repellents",
+                    "Daily prophylactic medication for all residents",
+                    "Indoor-only activities after sunset"
+                ],
                 correct: 1,
-                explanation: "Education on safe sex practices, including correct and consistent condom use, prevents HIV transmission.",
-                category: "HIV Interventions"
-            },
-            {
-                question: "What is PMTCT in HIV prevention?",
-                options: ["Pediatric Medical Care Team", "Prevention of Mother-to-Child Transmission through ART during pregnancy", "Primary Medical Center Treatment", "Public Maternal Care Training"],
-                correct: 1,
-                explanation: "PMTCT services provide ART to pregnant women to prevent transmission to their babies.",
-                category: "HIV Interventions"
-            },
-            {
-                question: "What harm reduction strategy is important for HIV prevention?",
-                options: ["Arresting all drug users", "Implement harm reduction (e.g., no needle sharing)", "Ignoring substance use", "Mandatory rehabilitation"],
-                correct: 1,
-                explanation: "Harm reduction includes needle exchange programs and education about not sharing injection equipment.",
-                category: "HIV Interventions"
-            },
-            {
-                question: "What is the nurse's role in HIV stigma reduction?",
-                options: ["Avoid HIV patients", "Conduct stigma reduction activities", "Isolate infected individuals", "Disclose patient status publicly"],
-                correct: 1,
-                explanation: "Nurses play a key role in reducing stigma through education and promoting acceptance and support.",
-                category: "HIV Interventions"
-            },
-            
-            // COVID-19
-            {
-                question: "What causes COVID-19?",
-                options: ["Influenza virus", "SARS-CoV-2", "Rhinovirus", "Adenovirus"],
-                correct: 1,
-                explanation: "COVID-19 is caused by SARS-CoV-2 (Severe Acute Respiratory Syndrome Coronavirus 2).",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "How is COVID-19 primarily transmitted?",
-                options: ["Food contamination", "Droplets and aerosols", "Insect bites", "Skin contact"],
-                correct: 1,
-                explanation: "COVID-19 spreads primarily through respiratory droplets and aerosols when infected persons breathe, speak, cough, or sneeze.",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "What are common symptoms of COVID-19?",
-                options: ["Skin rash and itching", "Cough, fever, loss of smell & taste, shortness of breath in severe cases", "Diarrhea only", "Joint pain only"],
-                correct: 1,
-                explanation: "COVID-19 commonly presents with cough, fever, loss of smell/taste, and SOB in severe cases.",
-                category: "Communicable Diseases"
-            },
-            {
-                question: "What should nurses encourage regarding COVID-19 prevention?",
-                options: ["Avoid all vaccines", "Encourage vaccination and boosters", "Only young people need vaccines", "Vaccines are optional and not important"],
-                correct: 1,
-                explanation: "Vaccination and booster shots are essential for preventing severe COVID-19 and reducing transmission.",
-                category: "COVID Interventions"
-            },
-            {
-                question: "What masking guidance should nurses promote for COVID-19?",
-                options: ["Masks are unnecessary", "Promote masking, respiratory etiquette, and good ventilation", "Only sick people wear masks", "Masks can be reused indefinitely"],
-                correct: 1,
-                explanation: "Proper masking, respiratory etiquette, and good ventilation reduce COVID-19 transmission.",
-                category: "COVID Interventions"
-            },
-            {
-                question: "When should symptomatic individuals be isolated for COVID-19?",
-                options: ["Never isolate", "Identify and isolate symptomatic individuals immediately", "Wait for test results", "Only if hospitalized"],
-                correct: 1,
-                explanation: "Immediate identification and isolation of symptomatic individuals prevents further transmission.",
-                category: "COVID Interventions"
-            },
-            {
-                question: "What community education is important for COVID-19 prevention?",
-                options: ["Ignore symptoms", "Provide community education about symptoms and when to seek care", "Self-medicate without consultation", "Wait until severe illness"],
-                correct: 1,
-                explanation: "Community education about recognizing symptoms and seeking timely care prevents severe outcomes.",
-                category: "COVID Interventions"
-            },
-            {
-                question: "What surveillance activity is important for COVID-19 control?",
-                options: ["No surveillance needed", "Support surveillance and reporting of cases", "Only report deaths", "Keep cases confidential"],
-                correct: 1,
-                explanation: "Surveillance and reporting help track outbreaks, identify trends, and implement control measures.",
-                category: "COVID Interventions"
+                explanation: "Education includes avoiding high-risk forested areas, using ITNs, applying repellents, and seeking prompt treatment for fever.",
+                category: "Malaria - Prevention"
             },
             
-            // MPOX (Monkeypox)
+            // RABIES - PRC Level
             {
-                question: "How is monkeypox (mpox) transmitted?",
-                options: ["Airborne only", "Close skin-to-skin contact, droplets, contaminated objects", "Water contamination", "Insect vectors"],
+                question: "The IMMEDIATE first-aid for a Category III animal bite is:",
+                options: [
+                    "Apply pressure bandage and immobilize the area",
+                    "Wash wound thoroughly with soap and water for 10-15 minutes",
+                    "Apply antiseptic and cover with sterile dressing",
+                    "Apply ice pack to reduce swelling"
+                ],
                 correct: 1,
-                explanation: "Mpox spreads through close skin-to-skin contact, respiratory droplets, and contaminated objects/surfaces.",
-                category: "Communicable Diseases"
+                explanation: "Immediate wound washing for 10-15 minutes with soap and running water is critical first-aid for rabies exposure.",
+                category: "Rabies - First Aid"
             },
             {
-                question: "What are the symptoms of monkeypox?",
-                options: ["Cough only", "Fever, lymph node swelling, rash with fluid-filled lesions", "Diarrhea only", "Headache only"],
+                question: "A Category III rabies exposure includes:",
+                options: [
+                    "Animal licking intact skin",
+                    "Single transdermal bite or scratch, contamination of mucous membranes with saliva, bites on head/neck/fingers",
+                    "Minor scratches without bleeding",
+                    "Touching or feeding animals"
+                ],
                 correct: 1,
-                explanation: "Mpox presents with fever, lymph node swelling, and characteristic rash with fluid-filled lesions.",
-                category: "Communicable Diseases"
+                explanation: "Category III includes transdermal bites/scratches, mucous membrane contamination with saliva, and bites on highly innervated areas (head, neck, fingers).",
+                category: "Rabies - Exposure Categories"
             },
             {
-                question: "What should nurses educate about to prevent mpox transmission?",
-                options: ["Ignore symptoms", "Educate on avoiding close contact with infected individuals", "Share personal items", "No precautions needed"],
+                question: "Post-Exposure Prophylaxis (PEP) for Category III rabies exposure includes:",
+                options: [
+                    "Rabies vaccine series only",
+                    "Rabies Immunoglobulin (RIG) infiltration at wound site plus rabies vaccine series",
+                    "Antibiotics and tetanus toxoid only",
+                    "Observation of the animal for 14 days"
+                ],
                 correct: 1,
-                explanation: "Education about avoiding close contact with infected persons and their belongings prevents mpox spread.",
-                category: "Mpox Interventions"
+                explanation: "Category III PEP requires both Rabies Immunoglobulin (infiltrated around wound) and complete rabies vaccine series.",
+                category: "Rabies - PEP"
             },
             {
-                question: "What hygiene practice prevents mpox transmission?",
-                options: ["Avoid handwashing", "Promote hygiene and frequent handwashing", "Share towels", "Reuse contaminated items"],
+                question: "Community education for rabies prevention should prioritize:",
+                options: [
+                    "Eliminating all stray animals immediately",
+                    "Responsible pet ownership and annual dog vaccination campaigns",
+                    "Avoiding all contact with animals",
+                    "Keeping cats indoors only"
+                ],
                 correct: 1,
-                explanation: "Frequent handwashing and good hygiene practices reduce the risk of mpox transmission.",
-                category: "Mpox Interventions"
+                explanation: "Prevention focuses on responsible pet ownership, maintaining dog vaccination coverage >70%, and avoiding stray animals.",
+                category: "Rabies - Prevention"
+            },
+            {
+                question: "All animal bite cases should be reported to:",
+                options: [
+                    "Barangay health center only",
+                    "Animal Bite Treatment Center (ABTC)",
+                    "Municipal health office",
+                    "Police station"
+                ],
+                correct: 1,
+                explanation: "Animal bite cases must be reported to the Animal Bite Treatment Center (ABTC) for proper assessment, treatment, and surveillance.",
+                category: "Rabies - Reporting"
             },
             
-            // WEEK 13: FIELD HEALTH SERVICES INFORMATION SYSTEM (FHSIS)
+            // HIV/AIDS - PRC Level
             {
-                question: "What is FHSIS?",
-                options: ["A hospital management system", "Field Health Services Information System - official recording and reporting system of DOH for public health programs", "A medical device", "A vaccination program"],
+                question: "HTC in HIV prevention programs stands for:",
+                options: [
+                    "Home Treatment Care",
+                    "HIV Testing and Counseling",
+                    "Health Transmission Control",
+                    "Hospital Treatment Center"
+                ],
                 correct: 1,
-                explanation: "FHSIS is the official recording and reporting system of the DOH for public health programs at community and facility levels.",
-                category: "FHSIS"
+                explanation: "HTC (HIV Testing and Counseling) is a key strategy for early detection, linkage to care, and prevention education.",
+                category: "HIV - Testing"
             },
             {
-                question: "When was FHSIS first established in the Philippines?",
-                options: ["2014", "1987", "1996", "2002"],
+                question: "ART in HIV management refers to:",
+                options: [
+                    "Assisted Reproductive Technology",
+                    "Antiretroviral Therapy",
+                    "Active Resistance Treatment",
+                    "Advanced Recovery Technique"
+                ],
+                correct: 1,
+                explanation: "ART (Antiretroviral Therapy) suppresses HIV viral replication, maintains immune function, and prevents AIDS progression.",
+                category: "HIV - Treatment"
+            },
+            {
+                question: "PMTCT services for HIV-positive pregnant women include:",
+                options: [
+                    "Prophylactic antibiotics during pregnancy",
+                    "Antiretroviral therapy during pregnancy and delivery to prevent mother-to-child transmission",
+                    "Monthly HIV testing throughout pregnancy",
+                    "Cesarean delivery for all cases"
+                ],
+                correct: 1,
+                explanation: "PMTCT (Prevention of Mother-to-Child Transmission) provides ART to pregnant women to prevent HIV transmission to the baby.",
+                category: "HIV - PMTCT"
+            },
+            {
+                question: "Harm reduction strategies for HIV prevention among people who inject drugs include:",
+                options: [
+                    "Mandatory rehabilitation programs",
+                    "Needle exchange programs and education about not sharing injection equipment",
+                    "Criminalization of drug use",
+                    "Isolation of drug users"
+                ],
+                correct: 1,
+                explanation: "Harm reduction includes needle/syringe programs, education about risks of sharing equipment, and linkage to treatment services.",
+                category: "HIV - Prevention"
+            },
+            {
+                question: "The nurse's role in HIV stigma reduction includes:",
+                options: [
+                    "Maintaining strict confidentiality only",
+                    "Conducting community education, promoting acceptance, and supporting affected individuals",
+                    "Referring all cases to specialists",
+                    "Avoiding discussion of HIV status"
+                ],
+                correct: 1,
+                explanation: "Nurses reduce stigma through education, advocacy, promoting acceptance, and creating supportive environments for people living with HIV.",
+                category: "HIV - Stigma Reduction"
+            },
+            
+            // COVID-19 - PRC Level
+            {
+                question: "The PRIMARY mode of COVID-19 transmission is through:",
+                options: [
+                    "Contaminated food and water",
+                    "Respiratory droplets and aerosols",
+                    "Direct skin contact",
+                    "Vector-borne transmission"
+                ],
+                correct: 1,
+                explanation: "COVID-19 spreads primarily through respiratory droplets and aerosols when infected persons breathe, talk, cough, or sneeze.",
+                category: "COVID-19 - Transmission"
+            },
+            {
+                question: "Nurses should encourage COVID-19 vaccination because it:",
+                options: [
+                    "Provides 100% protection from infection",
+                    "Prevents severe disease, hospitalization, and death",
+                    "Eliminates the need for other precautions",
+                    "Provides lifetime immunity"
+                ],
+                correct: 1,
+                explanation: "COVID-19 vaccines significantly reduce risk of severe disease, hospitalization, and death, though breakthrough infections can occur.",
+                category: "COVID-19 - Vaccination"
+            },
+            {
+                question: "Symptomatic individuals with COVID-19 should be:",
+                options: [
+                    "Advised to continue normal activities with masking",
+                    "Immediately identified and isolated to prevent transmission",
+                    "Tested only if symptoms worsen",
+                    "Observed for 7 days before isolation"
+                ],
+                correct: 1,
+                explanation: "Immediate identification and isolation of symptomatic individuals prevents further COVID-19 transmission in the community.",
+                category: "COVID-19 - Isolation"
+            },
+            
+            // MPOX - PRC Level
+            {
+                question: "Monkeypox (mpox) is primarily transmitted through:",
+                options: [
+                    "Airborne particles over long distances",
+                    "Close skin-to-skin contact, respiratory droplets, and contaminated materials",
+                    "Mosquito vectors",
+                    "Contaminated food and water"
+                ],
+                correct: 1,
+                explanation: "Mpox spreads through close physical contact, respiratory droplets during prolonged face-to-face contact, and contaminated objects.",
+                category: "Mpox - Transmission"
+            },
+            {
+                question: "A characteristic sign of monkeypox is:",
+                options: [
+                    "Maculopapular rash only",
+                    "Fever, lymphadenopathy, and rash with fluid-filled lesions",
+                    "Hemorrhagic manifestations",
+                    "Chronic skin patches"
+                ],
+                correct: 1,
+                explanation: "Mpox presents with fever, swollen lymph nodes (lymphadenopathy), and characteristic rash that progresses to fluid-filled lesions.",
+                category: "Mpox - Signs"
+            },
+            
+            // FHSIS - PRC Level
+            {
+                question: "FHSIS (Field Health Services Information System) was FIRST established in:",
+                options: [
+                    "1996",
+                    "1987",
+                    "2014",
+                    "2002"
+                ],
                 correct: 1,
                 explanation: "FHSIS was established in 1987 as the first standardized national health information system in the Philippines.",
-                category: "FHSIS"
+                category: "FHSIS - Background"
             },
             {
-                question: "When was FHSIS revised to improve data quality and align with modern public health needs?",
-                options: ["1987 only", "1996 and 2014", "Never revised", "2020"],
+                question: "FHSIS was revised in which years to improve data quality and reporting?",
+                options: [
+                    "1987 and 2002",
+                    "1996 and 2014",
+                    "2000 and 2010",
+                    "1990 and 2005"
+                ],
                 correct: 1,
-                explanation: "FHSIS was revised in 1996 and 2014 to improve data quality, simplify reporting, and align with modern public health needs.",
-                category: "FHSIS"
+                explanation: "FHSIS underwent major revisions in 1996 and 2014 to improve data quality, simplify reporting, and align with modern public health needs.",
+                category: "FHSIS - Background"
             },
             {
-                question: "What is the purpose of FHSIS?",
-                options: ["To sell medical equipment", "To provide timely, accurate, and relevant health data from barangay, RHU, municipal, provincial, and national levels", "To train doctors", "To build hospitals"],
+                question: "The PRIMARY purpose of FHSIS is to:",
+                options: [
+                    "Replace paper-based medical records",
+                    "Provide timely, accurate health data for planning, monitoring, and evaluation",
+                    "Track individual patient encounters",
+                    "Generate billing information"
+                ],
                 correct: 1,
-                explanation: "FHSIS provides timely, accurate health data across all levels for planning, monitoring, and evaluating health programs.",
-                category: "FHSIS"
+                explanation: "FHSIS provides timely, accurate, relevant health data across all levels for evidence-based planning, monitoring, and program evaluation.",
+                category: "FHSIS - Purpose"
             },
             {
-                question: "What does FHSIS support in public health?",
-                options: ["Only hospital care", "Planning and decision-making, monitoring health programs, evaluating health service performance", "Pharmaceutical sales", "Medical research only"],
+                question: "Record Forms in FHSIS are used for:",
+                options: [
+                    "Monthly statistical reports",
+                    "Daily operational data collection by health workers",
+                    "Annual program evaluation",
+                    "Budget reporting"
+                ],
                 correct: 1,
-                explanation: "FHSIS supports planning, monitoring, and evaluation of health programs and service performance.",
-                category: "FHSIS"
+                explanation: "Record Forms (e.g., TCL, ITR, Home-Based Maternal Record) are daily operational tools used by health workers for documenting services.",
+                category: "FHSIS - Components"
             },
             {
-                question: "What are Record Forms in FHSIS?",
-                options: ["Patient medical records", "Daily operational forms used by health workers (e.g., Target Client List, Individual Treatment Record)", "Financial records", "Employment forms"],
+                question: "The Target Client List (TCL) is a record form used to:",
+                options: [
+                    "Bill patients for services",
+                    "Track and monitor target clients for specific health programs",
+                    "Record hospital admissions",
+                    "Document medication inventory"
+                ],
                 correct: 1,
-                explanation: "Record Forms are daily operational tools like Target Client List (TCL), Individual Treatment Record (ITR), and Home-Based Maternal Record.",
-                category: "FHSIS Components"
+                explanation: "TCL lists target clients for specific programs (e.g., pregnant women, children for immunization) for tracking and follow-up.",
+                category: "FHSIS - Record Forms"
             },
             {
-                question: "What is the Target Client List (TCL)?",
-                options: ["A marketing list", "A record form listing target clients for specific health programs", "A payment record", "An inventory list"],
+                question: "The Individual Treatment Record (ITR) documents:",
+                options: [
+                    "Community-level health statistics",
+                    "Individual patient consultations, diagnoses, and treatments",
+                    "Program accomplishments",
+                    "Disease outbreak investigations"
+                ],
                 correct: 1,
-                explanation: "TCL is a record form that lists target clients for specific health programs for tracking and follow-up.",
-                category: "FHSIS Components"
+                explanation: "ITR records individual patient encounters including chief complaints, diagnosis, treatment, and follow-up plans.",
+                category: "FHSIS - Record Forms"
             },
             {
-                question: "What is the Individual Treatment Record (ITR)?",
-                options: ["A group counseling form", "A record form documenting individual patient consultations and treatments", "A billing statement", "A laboratory report"],
+                question: "The Home-Based Maternal Record tracks:",
+                options: [
+                    "Hospital deliveries only",
+                    "Prenatal care, delivery, and postpartum care in community settings",
+                    "Newborn immunizations only",
+                    "Family planning services"
+                ],
                 correct: 1,
-                explanation: "ITR documents individual patient consultations, diagnoses, treatments, and follow-up care.",
-                category: "FHSIS Components"
+                explanation: "Home-Based Maternal Record monitors maternal health throughout pregnancy, delivery, and postpartum period in home/community settings.",
+                category: "FHSIS - Record Forms"
             },
             {
-                question: "What is the Home-Based Maternal Record?",
-                options: ["A hospital admission form", "A record form tracking maternal health during pregnancy and postpartum at home/community", "A birth certificate", "A family planning form"],
+                question: "Reporting Forms in FHSIS are used to:",
+                options: [
+                    "Document individual patient care",
+                    "Summarize aggregated data monthly, quarterly, and annually for higher levels",
+                    "Record daily clinic activities",
+                    "Track medication dispensing"
+                ],
                 correct: 1,
-                explanation: "Home-Based Maternal Record tracks prenatal care, delivery, and postpartum care in community settings.",
-                category: "FHSIS Components"
+                explanation: "Reporting Forms summarize and aggregate data periodically (monthly, quarterly, annually) for submission from RHU to municipal, provincial, and national levels.",
+                category: "FHSIS - Reporting Forms"
             },
             {
-                question: "What is the Expanded Program on Immunization card?",
-                options: ["A health insurance card", "A record form tracking child immunization status", "A prescription pad", "A referral form"],
+                question: "The M1 Report in FHSIS contains data on:",
+                options: [
+                    "Morbidity and disease incidence",
+                    "Mortality (deaths) by cause and demographics",
+                    "Maternal health services",
+                    "Immunization coverage"
+                ],
                 correct: 1,
-                explanation: "The EPI card tracks a child's immunization status and schedule to ensure complete vaccination.",
-                category: "FHSIS Components"
+                explanation: "M1 (Mortality Report) summarizes death data including causes, age groups, and demographic information.",
+                category: "FHSIS - Reporting Forms"
             },
             {
-                question: "What are Reporting Forms in FHSIS?",
-                options: ["Forms for complaints", "Forms that summarize data monthly, quarterly, and annually for submission to higher levels", "Employment applications", "Budget requests"],
+                question: "The M2 Report in FHSIS summarizes:",
+                options: [
+                    "Mortality statistics",
+                    "Morbidity (disease incidence and health conditions)",
+                    "Maternal and child health services",
+                    "Environmental health activities"
+                ],
                 correct: 1,
-                explanation: "Reporting Forms summarize health data periodically for submission from RHU to municipal, provincial, and national levels.",
-                category: "FHSIS Components"
+                explanation: "M2 (Morbidity Report) tracks disease incidence, prevalence, and health conditions in the population.",
+                category: "FHSIS - Reporting Forms"
             },
             {
-                question: "What is the M1 - Mortality Report?",
-                options: ["A birth report", "A reporting form summarizing deaths by cause and demographic data", "A disease outbreak report", "A hospital admission report"],
+                question: "The NTP Report tracks:",
+                options: [
+                    "Nutrition program outcomes",
+                    "Tuberculosis case detection, treatment, and outcomes",
+                    "Neonatal care services",
+                    "Non-communicable disease prevalence"
+                ],
                 correct: 1,
-                explanation: "M1 Report summarizes mortality data including causes of death and demographic information.",
-                category: "FHSIS Components"
+                explanation: "NTP (National Tuberculosis Program) Report monitors TB surveillance including case finding, treatment adherence, and cure rates.",
+                category: "FHSIS - Reporting Forms"
             },
             {
-                question: "What is the M2 - Morbidity Report?",
-                options: ["A financial report", "A reporting form summarizing disease incidence and health conditions", "A staffing report", "An equipment inventory"],
+                question: "EPI Forms in FHSIS report:",
+                options: [
+                    "Emergency preparedness activities",
+                    "Immunization coverage, vaccine utilization, and stock levels",
+                    "Environmental protection initiatives",
+                    "Employee performance metrics"
+                ],
                 correct: 1,
-                explanation: "M2 Report summarizes morbidity data including disease incidence and prevalence in the population.",
-                category: "FHSIS Components"
+                explanation: "EPI (Expanded Program on Immunization) Forms track vaccination coverage, doses administered, and vaccine inventory.",
+                category: "FHSIS - Reporting Forms"
             },
             {
-                question: "What is the NTP Report?",
-                options: ["A nutrition report", "Tuberculosis surveillance report tracking TB cases and treatment outcomes", "A newborn screening report", "A nursing training report"],
+                question: "The FP Report in FHSIS tracks:",
+                options: [
+                    "Financial planning activities",
+                    "Family planning services and contraceptive method distribution",
+                    "Food program accomplishments",
+                    "Facility planning initiatives"
+                ],
                 correct: 1,
-                explanation: "NTP (National Tuberculosis Program) Report tracks TB case detection, treatment, and outcomes.",
-                category: "FHSIS Components"
+                explanation: "FP (Family Planning) Report monitors family planning consultations, contraceptive distribution, and method prevalence.",
+                category: "FHSIS - Reporting Forms"
             },
             {
-                question: "What are EPI Forms?",
-                options: ["Emergency preparedness forms", "Immunization reports tracking vaccine coverage and stock", "Employee performance forms", "Environmental protection forms"],
+                question: "Health Service Delivery Reports in FHSIS capture:",
+                options: [
+                    "Hospital revenue data",
+                    "Accomplishments and outputs of health programs (MCH, FP, EPI, NTP, etc.)",
+                    "Staff attendance records",
+                    "Equipment maintenance logs"
+                ],
                 correct: 1,
-                explanation: "EPI Forms report immunization coverage, vaccine utilization, and stock levels.",
-                category: "FHSIS Components"
+                explanation: "Service Delivery Reports document program accomplishments, service outputs, and coverage across various health programs.",
+                category: "FHSIS - Service Delivery"
             },
             {
-                question: "What is the FP Report?",
-                options: ["Financial planning report", "Family planning accomplishments tracking contraceptive use", "Food program report", "Facility planning report"],
+                question: "Maternal and Child Health (MCH) service delivery reports include:",
+                options: [
+                    "Prenatal visits only",
+                    "Prenatal care, deliveries, postnatal care, and newborn services",
+                    "Pediatric hospital admissions",
+                    "Reproductive health counseling only"
+                ],
                 correct: 1,
-                explanation: "FP Report tracks family planning services, method distribution, and contraceptive prevalence.",
-                category: "FHSIS Components"
+                explanation: "MCH reports comprehensively track prenatal visits, facility/home deliveries, postnatal checks, and newborn care services.",
+                category: "FHSIS - Service Delivery"
             },
             {
-                question: "What are Health Service Delivery Reports in FHSIS?",
-                options: ["Delivery room reports only", "Reports capturing accomplishments of health programs (MCH, FP, EPI, NTP, HIV/AIDS, etc.)", "Shipping manifests", "Food delivery logs"],
+                question: "Nutrition and Micronutrient Programs in FHSIS include data on:",
+                options: [
+                    "School feeding programs only",
+                    "Vitamin A supplementation, iron supplementation, and nutrition counseling",
+                    "Food safety inspections",
+                    "Malnutrition treatment protocols"
+                ],
                 correct: 1,
-                explanation: "Service Delivery Reports capture outputs and accomplishments across various health programs.",
-                category: "FHSIS Components"
+                explanation: "These programs track Vitamin A distribution, iron supplementation (including for pregnant women), and nutrition education services.",
+                category: "FHSIS - Service Delivery"
             },
             {
-                question: "What is included in Maternal and Child Health (MCH) service delivery reports?",
-                options: ["Only delivery statistics", "Prenatal care, deliveries, postnatal care, newborn care", "Pediatric surgeries", "Adult immunizations"],
+                question: "Environmental Health Services reports in FHSIS cover:",
+                options: [
+                    "Climate change impacts",
+                    "Sanitation inspections, water quality testing, and waste management",
+                    "Air pollution monitoring",
+                    "Occupational health assessments"
+                ],
                 correct: 1,
-                explanation: "MCH reports include comprehensive data on prenatal, delivery, postnatal, and newborn services.",
-                category: "FHSIS Components"
+                explanation: "Environmental Health reports include sanitation facility inspections, drinking water quality tests, and solid waste management activities.",
+                category: "FHSIS - Service Delivery"
             },
             {
-                question: "What does the FP service delivery report track?",
-                options: ["Financial performance", "Family planning services and contraceptive method distribution", "Food programs", "Facility planning"],
+                question: "Surveillance Reports in FHSIS are used for:",
+                options: [
+                    "Staff performance evaluation",
+                    "Disease monitoring, outbreak detection, and early warning",
+                    "Budget tracking",
+                    "Equipment inventory"
+                ],
                 correct: 1,
-                explanation: "FP service delivery reports track family planning consultations and contraceptive distribution.",
-                category: "FHSIS Components"
+                explanation: "Surveillance Reports track notifiable diseases, detect outbreaks, identify trends, and generate alerts for public health response.",
+                category: "FHSIS - Surveillance"
             },
             {
-                question: "What information is in EPI service delivery reports?",
-                options: ["Emergency responses", "Immunization coverage and vaccine administration", "Employee performance", "Environmental protection"],
+                question: "The Notifiable Diseases List includes diseases that:",
+                options: [
+                    "Are most common in the population",
+                    "Require mandatory reporting to health authorities for surveillance",
+                    "Require hospital admission",
+                    "Are vaccine-preventable"
+                ],
                 correct: 1,
-                explanation: "EPI service delivery reports track immunization coverage rates and vaccine doses administered.",
-                category: "FHSIS Components"
+                explanation: "Notifiable diseases must be reported by law to enable surveillance, outbreak detection, and public health response.",
+                category: "FHSIS - Surveillance"
             },
             {
-                question: "What does the NTP service delivery report contain?",
-                options: ["Nutrition data", "TB case detection, treatment, and outcomes", "Neonatal care", "Nursing staffing"],
+                question: "Outbreak Reports in FHSIS document:",
+                options: [
+                    "Routine disease incidence",
+                    "Unusual disease clusters requiring investigation and rapid response",
+                    "Annual disease trends",
+                    "Individual case investigations"
+                ],
                 correct: 1,
-                explanation: "NTP service delivery reports contain TB case finding, treatment adherence, and cure rates.",
-                category: "FHSIS Components"
+                explanation: "Outbreak Reports capture unusual disease clusters or events requiring epidemiological investigation and public health intervention.",
+                category: "FHSIS - Surveillance"
             },
             {
-                question: "What are Nutrition and Micronutrient Programs in FHSIS reporting?",
-                options: ["Restaurant inspections", "Vitamin A supplementation, iron supplementation, nutrition counseling", "Food labeling", "Meal planning"],
+                question: "Event-based surveillance in FHSIS monitors:",
+                options: [
+                    "Scheduled health events only",
+                    "Health events and rumors that may indicate outbreaks or threats",
+                    "Conference schedules",
+                    "Staff training events"
+                ],
                 correct: 1,
-                explanation: "These programs track Vitamin A distribution, iron supplementation, and nutrition education services.",
-                category: "FHSIS Components"
+                explanation: "Event-based surveillance captures unusual health events, rumors, or signals beyond routine reporting that may indicate emerging outbreaks.",
+                category: "FHSIS - Surveillance"
             },
             {
-                question: "What do Environmental Health Services reports cover?",
-                options: ["Weather data", "Sanitation, water quality, waste management inspections", "Air conditioning maintenance", "Landscaping"],
+                question: "FHSIS is essential to the Philippine public health system because it:",
+                options: [
+                    "Replaces clinical decision-making",
+                    "Ensures standardized reporting, enables evidence-based planning, and monitors program performance",
+                    "Eliminates the need for health workers",
+                    "Focuses only on hospital data"
+                ],
                 correct: 1,
-                explanation: "Environmental Health reports cover sanitation inspections, water quality testing, and waste management.",
-                category: "FHSIS Components"
-            },
-            {
-                question: "What are Surveillance Reports in FHSIS?",
-                options: ["Security camera footage", "Reports for disease monitoring and alert generation (Notifiable Diseases, Outbreak Reports)", "Employee surveillance", "Budget monitoring"],
-                correct: 1,
-                explanation: "Surveillance Reports track notifiable diseases, outbreaks, and trends for early warning and response.",
-                category: "FHSIS Components"
-            },
-            {
-                question: "What is the Notifiable Diseases List?",
-                options: ["A list of banned medications", "A list of diseases requiring mandatory reporting to health authorities", "A schedule of vaccines", "A patient roster"],
-                correct: 1,
-                explanation: "The Notifiable Diseases List includes diseases that must be reported for surveillance and outbreak detection.",
-                category: "FHSIS Components"
-            },
-            {
-                question: "What are Outbreak Reports?",
-                options: ["War reports", "Reports documenting disease clusters and outbreaks for rapid response", "Equipment breakdowns", "Budget overruns"],
-                correct: 1,
-                explanation: "Outbreak Reports document unusual disease clusters requiring investigation and public health response.",
-                category: "FHSIS Components"
-            },
-            {
-                question: "What is Event-based surveillance?",
-                options: ["Party planning", "Monitoring health events that may indicate outbreaks or public health threats", "Calendar management", "Conference scheduling"],
-                correct: 1,
-                explanation: "Event-based surveillance monitors unusual health events for early outbreak detection beyond routine reporting.",
-                category: "FHSIS Components"
-            },
-            {
-                question: "What are Case investigation forms?",
-                options: ["Legal documents", "Forms for detailed investigation of individual disease cases", "Criminal investigations", "Financial audits"],
-                correct: 1,
-                explanation: "Case investigation forms collect detailed information about disease cases for epidemiological analysis.",
-                category: "FHSIS Components"
-            },
-            {
-                question: "How do surveillance reports support decision-making?",
-                options: ["They don't", "They provide data for outbreak response and resource allocation", "They are for record-keeping only", "They replace clinical judgment"],
-                correct: 1,
-                explanation: "Surveillance data guides outbreak response, resource allocation, and public health interventions.",
-                category: "FHSIS Components"
-            },
-            {
-                question: "Why is FHSIS essential to the Philippine public health system?",
-                options: ["It's optional", "It ensures uniformity in reporting, enables data-driven decisions, supports planning, and monitors program performance", "It only tracks finances", "It replaces healthcare workers"],
-                correct: 1,
-                explanation: "FHSIS is essential for standardized data collection, evidence-based planning, and monitoring health outcomes.",
-                category: "FHSIS Importance"
-            },
-            {
-                question: "What does FHSIS cover in terms of service scope?",
-                options: ["Only hospitals", "Both service delivery outputs (what health workers do) and disease surveillance (what is happening in the community)", "Only urban areas", "Only private clinics"],
-                correct: 1,
-                explanation: "FHSIS covers service delivery (immunizations, prenatal care) and disease surveillance (outbreaks, trends).",
-                category: "FHSIS Importance"
+                explanation: "FHSIS provides standardized data collection, supports evidence-based planning and policy, and monitors health program outcomes systematically.",
+                category: "FHSIS - Importance"
             }
         ];
         
-        // Shuffle questions at the start and track state
         let quizData = [];
         let currentQuestionIndex = 0;
         let correctAnswers = 0;
@@ -1290,7 +1404,6 @@
         let answeredQuestions = new Set();
         let currentShuffledOptions = [];
         
-        // Load progress from localStorage
         function loadProgress() {
             const saved = localStorage.getItem('chn_week12_13_progress');
             if (saved) {
@@ -1306,7 +1419,6 @@
             }
         }
         
-        // Save progress to localStorage
         function saveProgress() {
             const data = {
                 currentQuestionIndex,
@@ -1319,7 +1431,6 @@
             localStorage.setItem('chn_week12_13_progress', JSON.stringify(data));
         }
         
-        // Clear progress
         function clearProgress() {
             localStorage.removeItem('chn_week12_13_progress');
         }
@@ -1337,13 +1448,11 @@
             const container = document.getElementById('quizContainer');
             const question = quizData[currentQuestionIndex];
             
-            // Create array of options with their original indices
             const optionsWithIndices = question.options.map((option, index) => ({
                 text: option,
                 originalIndex: index
             }));
             
-            // Shuffle the options
             currentShuffledOptions = shuffleArray(optionsWithIndices);
             
             container.innerHTML = `
@@ -1381,7 +1490,6 @@
             options.forEach(option => {
                 option.addEventListener('click', () => {
                     if (isAnswered) {
-                        // Allow changing answer before submitting
                         options.forEach(opt => opt.classList.remove('selected'));
                         option.classList.add('selected');
                         selectedAnswer = parseInt(option.dataset.originalIndex);
@@ -1431,7 +1539,6 @@
                 incorrectAnswers++;
                 answeredQuestions.add(currentQuestionIndex);
                 
-                // Add to review queue (will appear 3-5 questions later)
                 const questionsUntilReview = Math.floor(Math.random() * 3) + 3;
                 const reviewPosition = Math.min(currentQuestionIndex + questionsUntilReview, quizData.length - 1);
                 reviewQueue.push({
@@ -1464,7 +1571,6 @@
         }
         
         function nextQuestion() {
-            // Check if there's a review question to insert
             const reviewItem = reviewQueue.find(item => item.reviewAfter === currentQuestionIndex);
             
             if (reviewItem) {
@@ -1538,7 +1644,6 @@
             location.reload();
         }
         
-        // Initialize
         loadProgress();
         displayQuestion();
     </script>
