@@ -1,0 +1,1546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Week 12-13 CHN Quiz</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #d63384;
+            --primary-dark: #b02a6a;
+            --primary-light: #f7a8ca;
+            --secondary: #e685b5;
+            --accent: #ff6b9d;
+            --bg: #fff0f6;
+            --surface: #ffffff;
+            --text: #4a1942;
+            --text-light: #8b5f83;
+            --correct: #20c997;
+            --incorrect: #dc3545;
+            --border: #ffc9e0;
+            --shadow: rgba(214, 51, 132, 0.15);
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #fff0f6 0%, #ffe4f2 50%, #ffd4ea 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding: 2rem 1rem;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeInDown 0.6s ease;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .progress-card {
+            background: var(--surface);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px var(--shadow);
+            border: 2px solid var(--border);
+            animation: fadeIn 0.6s ease 0.2s both;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            font-weight: 600;
+            color: var(--text);
+        }
+        
+        .progress-bar-bg {
+            background: var(--border);
+            height: 14px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .progress-bar {
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            height: 100%;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 0.75rem;
+            background: var(--bg);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+        
+        .stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            margin-top: 0.25rem;
+        }
+        
+        .quiz-card {
+            background: var(--surface);
+            border-radius: 24px;
+            padding: 2.5rem;
+            box-shadow: 0 8px 30px var(--shadow);
+            margin-bottom: 2rem;
+            animation: fadeInUp 0.6s ease;
+            border: 3px solid var(--primary-light);
+        }
+        
+        .question-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid var(--border);
+        }
+        
+        .question-number {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            padding: 0.6rem 1.5rem;
+            border-radius: 25px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+        
+        .category-badge {
+            background: var(--secondary);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+        
+        .question-text {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+        
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .option {
+            background: linear-gradient(135deg, #ffffff 0%, #fff5fa 100%);
+            border: 3px solid var(--border);
+            border-radius: 16px;
+            padding: 1.2rem 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .option:hover:not(.disabled) {
+            border-color: var(--primary);
+            transform: translateX(8px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+        
+        .option-letter {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.1rem;
+            flex-shrink: 0;
+        }
+        
+        .option-text {
+            flex: 1;
+            font-size: 1.05rem;
+        }
+        
+        .option.selected {
+            background: linear-gradient(135deg, var(--primary-light), var(--secondary));
+            border-color: var(--primary);
+            color: var(--text);
+            transform: translateX(8px);
+        }
+        
+        .option.selected .option-letter {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .option.correct {
+            background: linear-gradient(135deg, var(--correct), #20c997);
+            border-color: var(--correct);
+            color: white;
+            animation: correctPulse 0.6s ease;
+        }
+        
+        .option.correct .option-letter {
+            background: white;
+            color: var(--correct);
+        }
+        
+        .option.incorrect {
+            background: linear-gradient(135deg, var(--incorrect), #dc3545);
+            border-color: var(--incorrect);
+            color: white;
+            animation: shake 0.5s ease;
+        }
+        
+        .option.incorrect .option-letter {
+            background: white;
+            color: var(--incorrect);
+        }
+        
+        .option.disabled {
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+        
+        @keyframes correctPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+        
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+        
+        .feedback {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            border-radius: 16px;
+            animation: fadeIn 0.4s ease;
+            border-left: 5px solid;
+        }
+        
+        .feedback.correct {
+            background: rgba(32, 201, 151, 0.1);
+            border-left-color: var(--correct);
+            color: var(--text);
+        }
+        
+        .feedback.incorrect {
+            background: rgba(220, 53, 69, 0.1);
+            border-left-color: var(--incorrect);
+            color: var(--text);
+        }
+        
+        .feedback-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feedback.correct .feedback-title {
+            color: var(--correct);
+        }
+        
+        .feedback.incorrect .feedback-title {
+            color: var(--incorrect);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 16px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            box-shadow: 0 4px 15px var(--shadow);
+        }
+        
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--shadow);
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover:not(:disabled) {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+        
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
+        .results-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 24px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 12px 40px var(--shadow);
+            animation: fadeInUp 0.8s ease;
+        }
+        
+        .results-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .score-display {
+            font-size: 4rem;
+            font-weight: 700;
+            margin: 1rem 0;
+        }
+        
+        .results-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .result-stat {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 1.5rem;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .result-stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+        
+        .result-stat-label {
+            font-size: 0.9rem;
+            opacity: 0.95;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .quiz-card {
+                padding: 1.5rem;
+            }
+            
+            .question-text {
+                font-size: 1.1rem;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Week 12-13 CHN</h1>
+        </div>
+        
+        <div class="progress-card">
+            <div class="progress-info">
+                <span id="questionCounter">Question 1 of 150</span>
+                <span id="scoreDisplay">Score: 0/0</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-bar" id="progressBar"></div>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-value" id="correctCount">0</div>
+                    <div class="stat-label">Correct</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="incorrectCount">0</div>
+                    <div class="stat-label">Incorrect</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="reviewCount">0</div>
+                    <div class="stat-label">To Review</div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="quizContainer"></div>
+        <div id="resultsContainer" class="hidden"></div>
+    </div>
+    
+    <script>
+        // Shuffle function
+        function shuffleArray(array) {
+            const newArray = [...array];
+            for (let i = newArray.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+            }
+            return newArray;
+        }
+        
+        const quizDataBase = [
+            // TUBERCULOSIS (TB)
+            {
+                question: "What is the causative agent of tuberculosis?",
+                options: ["Mycobacterium leprae", "Mycobacterium tuberculosis", "Streptococcus pneumoniae", "Staphylococcus aureus"],
+                correct: 1,
+                explanation: "Tuberculosis is caused by Mycobacterium tuberculosis, a bacteria spread through airborne droplets.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "How is tuberculosis primarily transmitted?",
+                options: ["Contaminated food", "Airborne droplet infection", "Direct skin contact", "Sexual contact"],
+                correct: 1,
+                explanation: "TB is transmitted through airborne droplet infection when an infected person coughs, sneezes, or speaks.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "Which of the following is a key sign/symptom of tuberculosis?",
+                options: ["Cough for less than 1 week", "Cough ≥ 2 weeks", "Sudden high fever", "Skin rash"],
+                correct: 1,
+                explanation: "A persistent cough lasting 2 weeks or more is a key public health sign of TB.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the common symptoms of tuberculosis? (Select all that apply in the options)",
+                options: ["Hemoptysis, low-grade fever, weight loss, night sweats", "Diarrhea, vomiting, headache", "Skin lesions, muscle pain", "Seizures, confusion"],
+                correct: 0,
+                explanation: "TB presents with hemoptysis (coughing blood), low-grade fever, weight loss, and night sweats.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What is Active Case Finding (ACF) in TB control?",
+                options: ["Waiting for patients to come to clinics", "Conducting skin inspections in communities", "Identifying TB cases through community screening and follow-up", "Providing free medication to all"],
+                correct: 2,
+                explanation: "ACF involves proactively identifying TB cases in communities through screening programs.",
+                category: "TB Interventions"
+            },
+            {
+                question: "What does DOTS stand for in TB treatment?",
+                options: ["Direct Observation Treatment Strategy", "Directly Observed Treatment, Short-course", "Daily Oral Treatment System", "Disease Observation and Tracking Service"],
+                correct: 1,
+                explanation: "DOTS stands for Directly Observed Treatment, Short-course - a TB control strategy.",
+                category: "TB Interventions"
+            },
+            {
+                question: "In TB nursing interventions, what does 'educate on covering the mouth' aim to prevent?",
+                options: ["Malnutrition", "Dehydration", "Transmission through droplets (ventilation, cough etiquette)", "Skin infections"],
+                correct: 2,
+                explanation: "Covering the mouth when coughing prevents airborne transmission of TB through respiratory droplets.",
+                category: "TB Interventions"
+            },
+            {
+                question: "What is contact tracing in TB management?",
+                options: ["Tracking patient medication intake", "Identifying and examining household members who may have been exposed", "Following up on patient appointments", "Recording patient contact information"],
+                correct: 1,
+                explanation: "Contact tracing involves identifying and examining household members and close contacts for TB exposure.",
+                category: "TB Interventions"
+            },
+            {
+                question: "Why is BCG vaccination given to newborns?",
+                options: ["To prevent all respiratory infections", "To prevent severe TB (miliary TB, TB meningitis)", "To cure existing TB", "To treat TB exposure"],
+                correct: 1,
+                explanation: "BCG vaccination protects newborns from severe forms of TB like miliary TB and TB meningitis.",
+                category: "TB Interventions"
+            },
+            {
+                question: "What is sputum sample collection used for in TB?",
+                options: ["To check blood sugar levels", "To identify TB bacteria and confirm diagnosis", "To measure lung capacity", "To test for allergies"],
+                correct: 1,
+                explanation: "Sputum samples are collected to identify TB bacteria and confirm the diagnosis through laboratory testing.",
+                category: "TB Interventions"
+            },
+            {
+                question: "What is the nurse's role in ensuring treatment adherence in TB?",
+                options: ["Ignore missed appointments", "Only provide medication", "Conduct household contact examination annually and teach self-care", "Hospitalize all patients"],
+                correct: 2,
+                explanation: "Nurses conduct contact examinations, teach self-care for hands/feet, and ensure adherence to treatment.",
+                category: "TB Interventions"
+            },
+            
+            // LEPROSY
+            {
+                question: "What causes leprosy?",
+                options: ["Mycobacterium tuberculosis", "Mycobacterium leprae", "Streptococcus pyogenes", "Treponema pallidum"],
+                correct: 1,
+                explanation: "Leprosy is caused by Mycobacterium leprae bacteria.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "How is leprosy transmitted?",
+                options: ["Airborne droplets", "Prolonged close contact", "Contaminated water", "Insect bites"],
+                correct: 1,
+                explanation: "Leprosy is transmitted through prolonged close contact with an infected person.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the characteristic symptoms of leprosy?",
+                options: ["Fever and cough", "Skin patches with loss of sensation, nerve enlargement, muscle weakness", "Diarrhea and vomiting", "Headache and dizziness"],
+                correct: 1,
+                explanation: "Leprosy presents with skin patches lacking sensation, nerve enlargement, and muscle weakness.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What is the primary nursing intervention for leprosy case detection?",
+                options: ["Blood testing", "Early case detection through skin inspection in communities", "Chest X-ray", "Urine analysis"],
+                correct: 1,
+                explanation: "Early case detection through systematic skin inspection in communities is key to leprosy control.",
+                category: "Leprosy Interventions"
+            },
+            {
+                question: "What does MDT stand for in leprosy treatment?",
+                options: ["Medical Diagnosis Test", "Multi-Drug Therapy", "Mandatory Detection Treatment", "Monitored Daily Treatment"],
+                correct: 1,
+                explanation: "MDT stands for Multi-Drug Therapy, the standard treatment regimen for leprosy.",
+                category: "Leprosy Interventions"
+            },
+            {
+                question: "Why is ROM exercise important in leprosy care?",
+                options: ["To increase appetite", "To prevent deformity through Range of Motion exercises and wound care", "To improve vision", "To reduce fever"],
+                correct: 1,
+                explanation: "ROM (Range of Motion) exercises prevent deformities, along with proper wound care in leprosy patients.",
+                category: "Leprosy Interventions"
+            },
+            {
+                question: "What is the role of health education in leprosy management?",
+                options: ["Teaching surgical techniques", "Reducing stigma through health education", "Prescribing medication", "Conducting laboratory tests"],
+                correct: 1,
+                explanation: "Health education is crucial to reduce stigma associated with leprosy and promote early treatment.",
+                category: "Leprosy Interventions"
+            },
+            {
+                question: "What self-care should nurses teach leprosy patients?",
+                options: ["How to perform surgery", "Self-care for hands and feet to avoid injuries", "How to prepare medication", "Laboratory techniques"],
+                correct: 1,
+                explanation: "Nurses teach patients self-care for hands and feet to prevent injuries due to loss of sensation.",
+                category: "Leprosy Interventions"
+            },
+            
+            // SCHISTOSOMIASIS
+            {
+                question: "What causes schistosomiasis?",
+                options: ["Bacteria", "Virus", "Schistosoma japonicum (parasite)", "Fungus"],
+                correct: 2,
+                explanation: "Schistosomiasis is caused by Schistosoma japonicum, a parasitic flatworm.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "How is schistosomiasis transmitted?",
+                options: ["Airborne", "Skin penetration of cercariae in infested water", "Food contamination", "Sexual contact"],
+                correct: 1,
+                explanation: "Schistosomiasis is transmitted when cercariae (larval form) penetrate the skin during contact with infested water.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the symptoms of schistosomiasis?",
+                options: ["Cough and fever", "Bloody diarrhea, abdominal pain, hepatosplenomegaly", "Skin rash and itching only", "Seizures"],
+                correct: 1,
+                explanation: "Schistosomiasis causes bloody diarrhea, abdominal pain, and enlarged liver/spleen (hepatosplenomegaly).",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What is Mass Drug Administration (MDA) in schistosomiasis control?",
+                options: ["Giving antibiotics to everyone", "Coordinating mass treatment with Praziquantel in endemic areas", "Vaccinating all children", "Distributing vitamins"],
+                correct: 1,
+                explanation: "MDA involves coordinating mass treatment with Praziquantel in areas where schistosomiasis is endemic.",
+                category: "Schistosomiasis Interventions"
+            },
+            {
+                question: "What health teaching is important to prevent schistosomiasis?",
+                options: ["Avoid all water", "Avoid wading in infested water bodies and use proper sanitation", "Drink more water", "Take daily vitamins"],
+                correct: 1,
+                explanation: "Prevention includes avoiding wading in infested water bodies and promoting proper sanitation.",
+                category: "Schistosomiasis Interventions"
+            },
+            {
+                question: "What environmental intervention helps control schistosomiasis?",
+                options: ["Air purification", "Promote sanitary toilets and proper waste disposal", "Indoor spraying", "Noise reduction"],
+                correct: 1,
+                explanation: "Promoting sanitary toilets and proper waste disposal prevents contamination of water bodies.",
+                category: "Schistosomiasis Interventions"
+            },
+            {
+                question: "What is snail control in schistosomiasis prevention?",
+                options: ["Removing all aquatic life", "Conducting environmental sanitation and snail control measures", "Eliminating all water sources", "Building more dams"],
+                correct: 1,
+                explanation: "Snail control and environmental sanitation reduce the intermediate host (snails) that harbor the parasite.",
+                category: "Schistosomiasis Interventions"
+            },
+            {
+                question: "Why is preventing cattle/water buffalo contamination important in schistosomiasis control?",
+                options: ["To improve milk production", "To engage communities in preventing animal contamination of water", "To increase livestock", "To improve meat quality"],
+                correct: 1,
+                explanation: "Preventing cattle/water buffalo from contaminating water bodies reduces parasite transmission.",
+                category: "Schistosomiasis Interventions"
+            },
+            
+            // LYMPHATIC FILARIASIS
+            {
+                question: "How is lymphatic filariasis transmitted?",
+                options: ["Contaminated food", "Mosquito bites (night-biting)", "Direct contact", "Airborne"],
+                correct: 1,
+                explanation: "Lymphatic filariasis is transmitted through night-biting mosquitoes (Anopheles species).",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the symptoms of lymphatic filariasis?",
+                options: ["Cough and fever", "Chronic limb swelling, lymphangitis, fever", "Diarrhea", "Skin rash"],
+                correct: 1,
+                explanation: "Lymphatic filariasis causes chronic limb swelling (elephantiasis), lymphangitis, and fever.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What is Annual Mass Drug Administration (MDA) for filariasis?",
+                options: ["Yearly vaccination", "Annual distribution of DEC + Albendazole to prevent infection", "Monthly check-ups", "Daily medication"],
+                correct: 1,
+                explanation: "Annual MDA involves distributing DEC (Diethylcarbamazine) plus Albendazole to prevent and control filariasis.",
+                category: "Filariasis Interventions"
+            },
+            {
+                question: "What mosquito control measures prevent lymphatic filariasis?",
+                options: ["Using air conditioning only", "Educate about mosquito control (bed nets, repellents)", "Avoiding all outdoor activities", "Taking daily vitamins"],
+                correct: 1,
+                explanation: "Mosquito control includes using bed nets, repellents, and eliminating breeding sites.",
+                category: "Filariasis Interventions"
+            },
+            {
+                question: "What hygiene management is important for lymphedema in filariasis?",
+                options: ["Ignore swelling", "Provide hygiene management for lymphedema (washing & drying)", "Apply hot compress", "Restrict all movement"],
+                correct: 1,
+                explanation: "Proper hygiene management includes regular washing and drying of affected limbs to prevent infections.",
+                category: "Filariasis Interventions"
+            },
+            {
+                question: "What environmental intervention helps reduce filariasis transmission?",
+                options: ["Indoor air purification", "Conduct environmental clean-up to reduce mosquito breeding sites", "Increase humidity", "Plant more trees"],
+                correct: 1,
+                explanation: "Environmental clean-up eliminates standing water and reduces mosquito breeding sites.",
+                category: "Filariasis Interventions"
+            },
+            {
+                question: "Why is health education important for filariasis prevention?",
+                options: ["To promote surgery", "To educate on early consultation and prevention methods", "To increase medication sales", "To build hospitals"],
+                correct: 1,
+                explanation: "Health education promotes early consultation and teaches prevention methods to control filariasis.",
+                category: "Filariasis Interventions"
+            },
+            
+            // DENGUE
+            {
+                question: "What virus causes dengue?",
+                options: ["Influenza virus", "Dengue virus (Aedes mosquito)", "Rabies virus", "HIV"],
+                correct: 1,
+                explanation: "Dengue is caused by dengue virus transmitted by Aedes mosquitoes (Aedes aegypti).",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "How is dengue transmitted?",
+                options: ["Airborne", "Day-biting mosquitoes", "Contaminated food", "Direct contact"],
+                correct: 1,
+                explanation: "Dengue is transmitted by day-biting Aedes mosquitoes, particularly Aedes aegypti.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the symptoms of dengue?",
+                options: ["Cough and cold", "Sudden fever, rash, nose/gum bleeding, severe abdominal pain, persistent vomiting", "Diarrhea only", "Headache only"],
+                correct: 1,
+                explanation: "Dengue presents with sudden fever, rash, bleeding (nose/gums), severe abdominal pain, and persistent vomiting.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What does the DOH 4S Strategy for dengue prevention include? (All components)",
+                options: ["Search and destroy breeding sites, Seek early consultation, Secure self-protection, Support fogging", "Spray, Spray, Spray, Spray", "Sleep, Sit, Stand, Squat", "Sanitize, Sterilize, Store, Seal"],
+                correct: 0,
+                explanation: "DOH 4S Strategy: Search & destroy mosquito breeding sites, Seek early consultation, Secure self-protection (mosquito repellents), Support fogging during outbreaks.",
+                category: "Dengue Interventions"
+            },
+            {
+                question: "What is the first 'S' in the DOH 4S Strategy?",
+                options: ["Sleep well", "Search & destroy mosquito breeding sites", "Stay indoors", "Sanitize hands"],
+                correct: 1,
+                explanation: "The first S is 'Search and destroy' - eliminating mosquito breeding sites by removing stagnant water.",
+                category: "Dengue Interventions"
+            },
+            {
+                question: "Why is 'Seek early consultation' important in dengue management?",
+                options: ["To get medication faster", "Early detection and treatment prevent severe dengue complications", "To avoid hospital costs", "To get time off work"],
+                correct: 1,
+                explanation: "Seeking early consultation allows early detection and treatment, preventing progression to severe dengue.",
+                category: "Dengue Interventions"
+            },
+            {
+                question: "What does 'Secure self-protection' mean in dengue prevention?",
+                options: ["Wearing protective gear in hospitals", "Using mosquito repellents and protective clothing", "Getting insurance", "Taking vitamins"],
+                correct: 1,
+                explanation: "Self-protection includes using mosquito repellents, wearing long sleeves, and using bed nets.",
+                category: "Dengue Interventions"
+            },
+            {
+                question: "When is 'Support fogging' recommended in the 4S strategy?",
+                options: ["Daily in all areas", "During dengue outbreaks to reduce adult mosquito population", "Never recommended", "Only during rainy season"],
+                correct: 1,
+                explanation: "Fogging is supported during outbreaks to quickly reduce the adult mosquito population.",
+                category: "Dengue Interventions"
+            },
+            {
+                question: "What should nurses advise about fluid intake in dengue patients?",
+                options: ["Restrict all fluids", "Advise increased fluid intake to prevent dehydration", "Only IV fluids", "No special instructions"],
+                correct: 1,
+                explanation: "Increased fluid intake is crucial to prevent dehydration from fever and maintain circulation.",
+                category: "Dengue Interventions"
+            },
+            {
+                question: "What warning signs of severe dengue should nurses monitor?",
+                options: ["Mild headache", "Severe abdominal pain, persistent vomiting, bleeding, restlessness", "Slight fever", "Dry skin"],
+                correct: 1,
+                explanation: "Warning signs include severe abdominal pain, persistent vomiting, bleeding, and restlessness indicating severe dengue.",
+                category: "Dengue Interventions"
+            },
+            {
+                question: "What community education should nurses provide for dengue prevention?",
+                options: ["Avoid all mosquitoes", "Community education on eliminating stagnant water", "Stay indoors always", "Take daily medication"],
+                correct: 1,
+                explanation: "Educating communities to eliminate stagnant water (breeding sites) is key to dengue prevention.",
+                category: "Dengue Interventions"
+            },
+            
+            // MALARIA
+            {
+                question: "What causes malaria?",
+                options: ["Bacteria", "Plasmodium spp. (parasite)", "Virus", "Fungus"],
+                correct: 1,
+                explanation: "Malaria is caused by Plasmodium species parasites transmitted by Anopheles mosquitoes.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "How is malaria transmitted?",
+                options: ["Contaminated food", "Night-biting Anopheles mosquitoes", "Direct contact", "Airborne"],
+                correct: 1,
+                explanation: "Malaria is transmitted through the bite of infected night-biting Anopheles mosquitoes.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the characteristic symptoms of malaria?",
+                options: ["Constant fever", "Recurrent fever (cyclic), chills and sweating, splenomegaly", "Cough and cold", "Diarrhea"],
+                correct: 1,
+                explanation: "Malaria presents with cyclic/recurrent fever, chills, sweating episodes, and enlarged spleen.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What is RDT screening in malaria control?",
+                options: ["Random drug testing", "Rapid Diagnostic Test screening in endemic areas", "Routine dental testing", "Radiation detection test"],
+                correct: 1,
+                explanation: "RDT (Rapid Diagnostic Test) screening allows quick malaria diagnosis in endemic areas.",
+                category: "Malaria Interventions"
+            },
+            {
+                question: "What medication is used in Artemisinin Combination Therapy (ACT)?",
+                options: ["Antibiotics", "ACT for confirmed malaria cases", "Antiviral drugs", "Painkillers"],
+                correct: 1,
+                explanation: "ACT (Artemisinin Combination Therapy) is the recommended treatment for confirmed malaria cases.",
+                category: "Malaria Interventions"
+            },
+            {
+                question: "What are Insecticide-Treated Nets (ITNs) used for?",
+                options: ["Catching fish", "Preventing malaria by protecting from mosquito bites during sleep", "Decorating homes", "Storing food"],
+                correct: 1,
+                explanation: "ITNs protect people from mosquito bites during sleep when Anopheles mosquitoes are most active.",
+                category: "Malaria Interventions"
+            },
+            {
+                question: "What is Indoor Residual Spraying (IRS)?",
+                options: ["Cleaning floors", "Spraying insecticide inside homes to kill mosquitoes", "Air freshening", "Painting walls"],
+                correct: 1,
+                explanation: "IRS involves spraying long-lasting insecticides on indoor surfaces to kill mosquitoes that rest there.",
+                category: "Malaria Interventions"
+            },
+            {
+                question: "What health education should nurses provide about malaria prevention?",
+                options: ["Avoid all outdoor activities", "Health education on avoiding forested mosquito habitats and using protection", "Move to cities", "Take daily medication without diagnosis"],
+                correct: 1,
+                explanation: "Education includes avoiding high-risk areas, using bed nets, repellents, and seeking early treatment.",
+                category: "Malaria Interventions"
+            },
+            
+            // RABIES
+            {
+                question: "How is rabies transmitted?",
+                options: ["Airborne", "Bite/saliva of rabid animals", "Contaminated water", "Sexual contact"],
+                correct: 1,
+                explanation: "Rabies is transmitted through the bite or saliva of infected (rabid) animals entering wounds.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the late-stage symptoms of rabies?",
+                options: ["Mild fever", "Hydrophobia, aerophobia, confusion, seizures", "Skin rash", "Diarrhea"],
+                correct: 1,
+                explanation: "Late-stage rabies causes hydrophobia (fear of water), aerophobia (fear of air), confusion, and seizures.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What is the immediate nursing intervention for a rabies bite?",
+                options: ["Apply bandage immediately", "Provide wound care immediately (10-15 minutes washing)", "Give oral antibiotics", "Wait and observe"],
+                correct: 1,
+                explanation: "Immediate wound care involves thorough washing for 10-15 minutes with soap and water.",
+                category: "Rabies Interventions"
+            },
+            {
+                question: "What bite category requires Post-Exposure Prophylaxis (PEP)?",
+                options: ["No contact with animal", "Category III bites (deep wounds, multiple bites)", "Minor scratches", "Animal licking intact skin"],
+                correct: 1,
+                explanation: "Category III bites (deep wounds, multiple bites, bites on head/neck) require immediate PEP.",
+                category: "Rabies Interventions"
+            },
+            {
+                question: "What does PEP include for rabies prevention?",
+                options: ["Antibiotics only", "Rabies Immunoglobulin for Category III bites and vaccine series", "Pain medication", "Tetanus shot only"],
+                correct: 1,
+                explanation: "PEP includes Rabies Immunoglobulin (for Category III) and a series of rabies vaccines.",
+                category: "Rabies Interventions"
+            },
+            {
+                question: "What community education is important for rabies prevention?",
+                options: ["Avoid all animals", "Educate on responsible pet ownership and vaccination campaigns", "Kill all stray animals", "Never touch any animal"],
+                correct: 1,
+                explanation: "Education includes responsible pet ownership, animal vaccination, and avoiding stray animals.",
+                category: "Rabies Interventions"
+            },
+            {
+                question: "What should nurses do regarding dog vaccination in rabies prevention?",
+                options: ["Ignore animal health", "Support dog vaccination campaigns", "Focus only on human vaccination", "Recommend euthanizing all dogs"],
+                correct: 1,
+                explanation: "Supporting dog vaccination campaigns is crucial for rabies prevention and control in communities.",
+                category: "Rabies Interventions"
+            },
+            {
+                question: "Where should animal bite cases be reported?",
+                options: ["Nowhere - keep private", "Report bite cases to the Animal Bite Treatment Center (ABTC)", "Only to family", "Social media"],
+                correct: 1,
+                explanation: "All animal bite cases should be reported to the Animal Bite Treatment Center (ABTC) for proper management.",
+                category: "Rabies Interventions"
+            },
+            
+            // HIV/AIDS
+            {
+                question: "How is HIV transmitted?",
+                options: ["Mosquito bites", "Sexual contact, blood, needles, mother-to-child", "Airborne", "Sharing food"],
+                correct: 1,
+                explanation: "HIV is transmitted through sexual contact, contaminated blood/needles, and from mother to child.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the symptoms of HIV/AIDS?",
+                options: ["Immediate severe illness", "Fever, weight loss, opportunistic infections", "Skin rash only", "Headache only"],
+                correct: 1,
+                explanation: "HIV/AIDS presents with fever, weight loss, and increased susceptibility to opportunistic infections.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What does HTC stand for in HIV prevention?",
+                options: ["Health Treatment Center", "HIV testing and counseling", "Hospital Trauma Care", "Home Treatment Course"],
+                correct: 1,
+                explanation: "HTC stands for HIV Testing and Counseling, a key prevention and early detection strategy.",
+                category: "HIV Interventions"
+            },
+            {
+                question: "What is ART in HIV treatment?",
+                options: ["Artificial Reproductive Technology", "Antiretroviral Therapy", "Advanced Radiation Treatment", "Assisted Recovery Treatment"],
+                correct: 1,
+                explanation: "ART (Antiretroviral Therapy) suppresses HIV replication and helps maintain immune function.",
+                category: "HIV Interventions"
+            },
+            {
+                question: "What safe sex practice should nurses educate about for HIV prevention?",
+                options: ["Abstinence only", "Educate on safe sex practices and condom use", "No education needed", "Avoid all relationships"],
+                correct: 1,
+                explanation: "Education on safe sex practices, including correct and consistent condom use, prevents HIV transmission.",
+                category: "HIV Interventions"
+            },
+            {
+                question: "What is PMTCT in HIV prevention?",
+                options: ["Pediatric Medical Care Team", "Prevention of Mother-to-Child Transmission through ART during pregnancy", "Primary Medical Center Treatment", "Public Maternal Care Training"],
+                correct: 1,
+                explanation: "PMTCT services provide ART to pregnant women to prevent transmission to their babies.",
+                category: "HIV Interventions"
+            },
+            {
+                question: "What harm reduction strategy is important for HIV prevention?",
+                options: ["Arresting all drug users", "Implement harm reduction (e.g., no needle sharing)", "Ignoring substance use", "Mandatory rehabilitation"],
+                correct: 1,
+                explanation: "Harm reduction includes needle exchange programs and education about not sharing injection equipment.",
+                category: "HIV Interventions"
+            },
+            {
+                question: "What is the nurse's role in HIV stigma reduction?",
+                options: ["Avoid HIV patients", "Conduct stigma reduction activities", "Isolate infected individuals", "Disclose patient status publicly"],
+                correct: 1,
+                explanation: "Nurses play a key role in reducing stigma through education and promoting acceptance and support.",
+                category: "HIV Interventions"
+            },
+            
+            // COVID-19
+            {
+                question: "What causes COVID-19?",
+                options: ["Influenza virus", "SARS-CoV-2", "Rhinovirus", "Adenovirus"],
+                correct: 1,
+                explanation: "COVID-19 is caused by SARS-CoV-2 (Severe Acute Respiratory Syndrome Coronavirus 2).",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "How is COVID-19 primarily transmitted?",
+                options: ["Food contamination", "Droplets and aerosols", "Insect bites", "Skin contact"],
+                correct: 1,
+                explanation: "COVID-19 spreads primarily through respiratory droplets and aerosols when infected persons breathe, speak, cough, or sneeze.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are common symptoms of COVID-19?",
+                options: ["Skin rash and itching", "Cough, fever, loss of smell & taste, shortness of breath in severe cases", "Diarrhea only", "Joint pain only"],
+                correct: 1,
+                explanation: "COVID-19 commonly presents with cough, fever, loss of smell/taste, and SOB in severe cases.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What should nurses encourage regarding COVID-19 prevention?",
+                options: ["Avoid all vaccines", "Encourage vaccination and boosters", "Only young people need vaccines", "Vaccines are optional and not important"],
+                correct: 1,
+                explanation: "Vaccination and booster shots are essential for preventing severe COVID-19 and reducing transmission.",
+                category: "COVID Interventions"
+            },
+            {
+                question: "What masking guidance should nurses promote for COVID-19?",
+                options: ["Masks are unnecessary", "Promote masking, respiratory etiquette, and good ventilation", "Only sick people wear masks", "Masks can be reused indefinitely"],
+                correct: 1,
+                explanation: "Proper masking, respiratory etiquette, and good ventilation reduce COVID-19 transmission.",
+                category: "COVID Interventions"
+            },
+            {
+                question: "When should symptomatic individuals be isolated for COVID-19?",
+                options: ["Never isolate", "Identify and isolate symptomatic individuals immediately", "Wait for test results", "Only if hospitalized"],
+                correct: 1,
+                explanation: "Immediate identification and isolation of symptomatic individuals prevents further transmission.",
+                category: "COVID Interventions"
+            },
+            {
+                question: "What community education is important for COVID-19 prevention?",
+                options: ["Ignore symptoms", "Provide community education about symptoms and when to seek care", "Self-medicate without consultation", "Wait until severe illness"],
+                correct: 1,
+                explanation: "Community education about recognizing symptoms and seeking timely care prevents severe outcomes.",
+                category: "COVID Interventions"
+            },
+            {
+                question: "What surveillance activity is important for COVID-19 control?",
+                options: ["No surveillance needed", "Support surveillance and reporting of cases", "Only report deaths", "Keep cases confidential"],
+                correct: 1,
+                explanation: "Surveillance and reporting help track outbreaks, identify trends, and implement control measures.",
+                category: "COVID Interventions"
+            },
+            
+            // MPOX (Monkeypox)
+            {
+                question: "How is monkeypox (mpox) transmitted?",
+                options: ["Airborne only", "Close skin-to-skin contact, droplets, contaminated objects", "Water contamination", "Insect vectors"],
+                correct: 1,
+                explanation: "Mpox spreads through close skin-to-skin contact, respiratory droplets, and contaminated objects/surfaces.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What are the symptoms of monkeypox?",
+                options: ["Cough only", "Fever, lymph node swelling, rash with fluid-filled lesions", "Diarrhea only", "Headache only"],
+                correct: 1,
+                explanation: "Mpox presents with fever, lymph node swelling, and characteristic rash with fluid-filled lesions.",
+                category: "Communicable Diseases"
+            },
+            {
+                question: "What should nurses educate about to prevent mpox transmission?",
+                options: ["Ignore symptoms", "Educate on avoiding close contact with infected individuals", "Share personal items", "No precautions needed"],
+                correct: 1,
+                explanation: "Education about avoiding close contact with infected persons and their belongings prevents mpox spread.",
+                category: "Mpox Interventions"
+            },
+            {
+                question: "What hygiene practice prevents mpox transmission?",
+                options: ["Avoid handwashing", "Promote hygiene and frequent handwashing", "Share towels", "Reuse contaminated items"],
+                correct: 1,
+                explanation: "Frequent handwashing and good hygiene practices reduce the risk of mpox transmission.",
+                category: "Mpox Interventions"
+            },
+            
+            // WEEK 13: FIELD HEALTH SERVICES INFORMATION SYSTEM (FHSIS)
+            {
+                question: "What is FHSIS?",
+                options: ["A hospital management system", "Field Health Services Information System - official recording and reporting system of DOH for public health programs", "A medical device", "A vaccination program"],
+                correct: 1,
+                explanation: "FHSIS is the official recording and reporting system of the DOH for public health programs at community and facility levels.",
+                category: "FHSIS"
+            },
+            {
+                question: "When was FHSIS first established in the Philippines?",
+                options: ["2014", "1987", "1996", "2002"],
+                correct: 1,
+                explanation: "FHSIS was established in 1987 as the first standardized national health information system in the Philippines.",
+                category: "FHSIS"
+            },
+            {
+                question: "When was FHSIS revised to improve data quality and align with modern public health needs?",
+                options: ["1987 only", "1996 and 2014", "Never revised", "2020"],
+                correct: 1,
+                explanation: "FHSIS was revised in 1996 and 2014 to improve data quality, simplify reporting, and align with modern public health needs.",
+                category: "FHSIS"
+            },
+            {
+                question: "What is the purpose of FHSIS?",
+                options: ["To sell medical equipment", "To provide timely, accurate, and relevant health data from barangay, RHU, municipal, provincial, and national levels", "To train doctors", "To build hospitals"],
+                correct: 1,
+                explanation: "FHSIS provides timely, accurate health data across all levels for planning, monitoring, and evaluating health programs.",
+                category: "FHSIS"
+            },
+            {
+                question: "What does FHSIS support in public health?",
+                options: ["Only hospital care", "Planning and decision-making, monitoring health programs, evaluating health service performance", "Pharmaceutical sales", "Medical research only"],
+                correct: 1,
+                explanation: "FHSIS supports planning, monitoring, and evaluation of health programs and service performance.",
+                category: "FHSIS"
+            },
+            {
+                question: "What are Record Forms in FHSIS?",
+                options: ["Patient medical records", "Daily operational forms used by health workers (e.g., Target Client List, Individual Treatment Record)", "Financial records", "Employment forms"],
+                correct: 1,
+                explanation: "Record Forms are daily operational tools like Target Client List (TCL), Individual Treatment Record (ITR), and Home-Based Maternal Record.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the Target Client List (TCL)?",
+                options: ["A marketing list", "A record form listing target clients for specific health programs", "A payment record", "An inventory list"],
+                correct: 1,
+                explanation: "TCL is a record form that lists target clients for specific health programs for tracking and follow-up.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the Individual Treatment Record (ITR)?",
+                options: ["A group counseling form", "A record form documenting individual patient consultations and treatments", "A billing statement", "A laboratory report"],
+                correct: 1,
+                explanation: "ITR documents individual patient consultations, diagnoses, treatments, and follow-up care.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the Home-Based Maternal Record?",
+                options: ["A hospital admission form", "A record form tracking maternal health during pregnancy and postpartum at home/community", "A birth certificate", "A family planning form"],
+                correct: 1,
+                explanation: "Home-Based Maternal Record tracks prenatal care, delivery, and postpartum care in community settings.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the Expanded Program on Immunization card?",
+                options: ["A health insurance card", "A record form tracking child immunization status", "A prescription pad", "A referral form"],
+                correct: 1,
+                explanation: "The EPI card tracks a child's immunization status and schedule to ensure complete vaccination.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What are Reporting Forms in FHSIS?",
+                options: ["Forms for complaints", "Forms that summarize data monthly, quarterly, and annually for submission to higher levels", "Employment applications", "Budget requests"],
+                correct: 1,
+                explanation: "Reporting Forms summarize health data periodically for submission from RHU to municipal, provincial, and national levels.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the M1 - Mortality Report?",
+                options: ["A birth report", "A reporting form summarizing deaths by cause and demographic data", "A disease outbreak report", "A hospital admission report"],
+                correct: 1,
+                explanation: "M1 Report summarizes mortality data including causes of death and demographic information.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the M2 - Morbidity Report?",
+                options: ["A financial report", "A reporting form summarizing disease incidence and health conditions", "A staffing report", "An equipment inventory"],
+                correct: 1,
+                explanation: "M2 Report summarizes morbidity data including disease incidence and prevalence in the population.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the NTP Report?",
+                options: ["A nutrition report", "Tuberculosis surveillance report tracking TB cases and treatment outcomes", "A newborn screening report", "A nursing training report"],
+                correct: 1,
+                explanation: "NTP (National Tuberculosis Program) Report tracks TB case detection, treatment, and outcomes.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What are EPI Forms?",
+                options: ["Emergency preparedness forms", "Immunization reports tracking vaccine coverage and stock", "Employee performance forms", "Environmental protection forms"],
+                correct: 1,
+                explanation: "EPI Forms report immunization coverage, vaccine utilization, and stock levels.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the FP Report?",
+                options: ["Financial planning report", "Family planning accomplishments tracking contraceptive use", "Food program report", "Facility planning report"],
+                correct: 1,
+                explanation: "FP Report tracks family planning services, method distribution, and contraceptive prevalence.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What are Health Service Delivery Reports in FHSIS?",
+                options: ["Delivery room reports only", "Reports capturing accomplishments of health programs (MCH, FP, EPI, NTP, HIV/AIDS, etc.)", "Shipping manifests", "Food delivery logs"],
+                correct: 1,
+                explanation: "Service Delivery Reports capture outputs and accomplishments across various health programs.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is included in Maternal and Child Health (MCH) service delivery reports?",
+                options: ["Only delivery statistics", "Prenatal care, deliveries, postnatal care, newborn care", "Pediatric surgeries", "Adult immunizations"],
+                correct: 1,
+                explanation: "MCH reports include comprehensive data on prenatal, delivery, postnatal, and newborn services.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What does the FP service delivery report track?",
+                options: ["Financial performance", "Family planning services and contraceptive method distribution", "Food programs", "Facility planning"],
+                correct: 1,
+                explanation: "FP service delivery reports track family planning consultations and contraceptive distribution.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What information is in EPI service delivery reports?",
+                options: ["Emergency responses", "Immunization coverage and vaccine administration", "Employee performance", "Environmental protection"],
+                correct: 1,
+                explanation: "EPI service delivery reports track immunization coverage rates and vaccine doses administered.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What does the NTP service delivery report contain?",
+                options: ["Nutrition data", "TB case detection, treatment, and outcomes", "Neonatal care", "Nursing staffing"],
+                correct: 1,
+                explanation: "NTP service delivery reports contain TB case finding, treatment adherence, and cure rates.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What are Nutrition and Micronutrient Programs in FHSIS reporting?",
+                options: ["Restaurant inspections", "Vitamin A supplementation, iron supplementation, nutrition counseling", "Food labeling", "Meal planning"],
+                correct: 1,
+                explanation: "These programs track Vitamin A distribution, iron supplementation, and nutrition education services.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What do Environmental Health Services reports cover?",
+                options: ["Weather data", "Sanitation, water quality, waste management inspections", "Air conditioning maintenance", "Landscaping"],
+                correct: 1,
+                explanation: "Environmental Health reports cover sanitation inspections, water quality testing, and waste management.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What are Surveillance Reports in FHSIS?",
+                options: ["Security camera footage", "Reports for disease monitoring and alert generation (Notifiable Diseases, Outbreak Reports)", "Employee surveillance", "Budget monitoring"],
+                correct: 1,
+                explanation: "Surveillance Reports track notifiable diseases, outbreaks, and trends for early warning and response.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is the Notifiable Diseases List?",
+                options: ["A list of banned medications", "A list of diseases requiring mandatory reporting to health authorities", "A schedule of vaccines", "A patient roster"],
+                correct: 1,
+                explanation: "The Notifiable Diseases List includes diseases that must be reported for surveillance and outbreak detection.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What are Outbreak Reports?",
+                options: ["War reports", "Reports documenting disease clusters and outbreaks for rapid response", "Equipment breakdowns", "Budget overruns"],
+                correct: 1,
+                explanation: "Outbreak Reports document unusual disease clusters requiring investigation and public health response.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What is Event-based surveillance?",
+                options: ["Party planning", "Monitoring health events that may indicate outbreaks or public health threats", "Calendar management", "Conference scheduling"],
+                correct: 1,
+                explanation: "Event-based surveillance monitors unusual health events for early outbreak detection beyond routine reporting.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "What are Case investigation forms?",
+                options: ["Legal documents", "Forms for detailed investigation of individual disease cases", "Criminal investigations", "Financial audits"],
+                correct: 1,
+                explanation: "Case investigation forms collect detailed information about disease cases for epidemiological analysis.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "How do surveillance reports support decision-making?",
+                options: ["They don't", "They provide data for outbreak response and resource allocation", "They are for record-keeping only", "They replace clinical judgment"],
+                correct: 1,
+                explanation: "Surveillance data guides outbreak response, resource allocation, and public health interventions.",
+                category: "FHSIS Components"
+            },
+            {
+                question: "Why is FHSIS essential to the Philippine public health system?",
+                options: ["It's optional", "It ensures uniformity in reporting, enables data-driven decisions, supports planning, and monitors program performance", "It only tracks finances", "It replaces healthcare workers"],
+                correct: 1,
+                explanation: "FHSIS is essential for standardized data collection, evidence-based planning, and monitoring health outcomes.",
+                category: "FHSIS Importance"
+            },
+            {
+                question: "What does FHSIS cover in terms of service scope?",
+                options: ["Only hospitals", "Both service delivery outputs (what health workers do) and disease surveillance (what is happening in the community)", "Only urban areas", "Only private clinics"],
+                correct: 1,
+                explanation: "FHSIS covers service delivery (immunizations, prenatal care) and disease surveillance (outbreaks, trends).",
+                category: "FHSIS Importance"
+            }
+        ];
+        
+        // Shuffle questions at the start and track state
+        let quizData = [];
+        let currentQuestionIndex = 0;
+        let correctAnswers = 0;
+        let incorrectAnswers = 0;
+        let selectedAnswer = null;
+        let isAnswered = false;
+        let reviewQueue = [];
+        let answeredQuestions = new Set();
+        let currentShuffledOptions = [];
+        
+        // Load progress from localStorage
+        function loadProgress() {
+            const saved = localStorage.getItem('chn_week12_13_progress');
+            if (saved) {
+                const data = JSON.parse(saved);
+                currentQuestionIndex = data.currentQuestionIndex || 0;
+                correctAnswers = data.correctAnswers || 0;
+                incorrectAnswers = data.incorrectAnswers || 0;
+                answeredQuestions = new Set(data.answeredQuestions || []);
+                reviewQueue = data.reviewQueue || [];
+                quizData = data.quizData || shuffleArray(quizDataBase);
+            } else {
+                quizData = shuffleArray(quizDataBase);
+            }
+        }
+        
+        // Save progress to localStorage
+        function saveProgress() {
+            const data = {
+                currentQuestionIndex,
+                correctAnswers,
+                incorrectAnswers,
+                answeredQuestions: Array.from(answeredQuestions),
+                reviewQueue,
+                quizData
+            };
+            localStorage.setItem('chn_week12_13_progress', JSON.stringify(data));
+        }
+        
+        // Clear progress
+        function clearProgress() {
+            localStorage.removeItem('chn_week12_13_progress');
+        }
+        
+        function getTotalQuestions() {
+            return quizData.length + reviewQueue.length;
+        }
+        
+        function displayQuestion() {
+            if (currentQuestionIndex >= quizData.length) {
+                showResults();
+                return;
+            }
+            
+            const container = document.getElementById('quizContainer');
+            const question = quizData[currentQuestionIndex];
+            
+            // Create array of options with their original indices
+            const optionsWithIndices = question.options.map((option, index) => ({
+                text: option,
+                originalIndex: index
+            }));
+            
+            // Shuffle the options
+            currentShuffledOptions = shuffleArray(optionsWithIndices);
+            
+            container.innerHTML = `
+                <div class="quiz-card">
+                    <div class="question-header">
+                        <span class="question-number">Question ${answeredQuestions.size + 1} of ${getTotalQuestions()}</span>
+                        <span class="category-badge">${question.category}</span>
+                    </div>
+                    <div class="question-text">${question.question}</div>
+                    <div class="options">
+                        ${currentShuffledOptions.map((option, displayIndex) => `
+                            <div class="option" data-original-index="${option.originalIndex}">
+                                <div class="option-letter">${String.fromCharCode(65 + displayIndex)}</div>
+                                <div class="option-text">${option.text}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                    <div id="feedback"></div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" id="submitBtn" disabled>Submit Answer</button>
+                        <button class="btn btn-secondary" id="nextBtn" style="display: none;">Next Question →</button>
+                    </div>
+                </div>
+            `;
+            
+            updateStats();
+            attachEventListeners();
+        }
+        
+        function attachEventListeners() {
+            const options = document.querySelectorAll('.option');
+            const submitBtn = document.getElementById('submitBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            options.forEach(option => {
+                option.addEventListener('click', () => {
+                    if (isAnswered) {
+                        // Allow changing answer before submitting
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        selectedAnswer = parseInt(option.dataset.originalIndex);
+                    } else {
+                        options.forEach(opt => opt.classList.remove('selected'));
+                        option.classList.add('selected');
+                        selectedAnswer = parseInt(option.dataset.originalIndex);
+                        submitBtn.disabled = false;
+                    }
+                });
+            });
+            
+            submitBtn.addEventListener('click', submitAnswer);
+            nextBtn.addEventListener('click', nextQuestion);
+        }
+        
+        function submitAnswer() {
+            if (selectedAnswer === null) return;
+            
+            isAnswered = true;
+            
+            const question = quizData[currentQuestionIndex];
+            const options = document.querySelectorAll('.option');
+            const feedback = document.getElementById('feedback');
+            const submitBtn = document.getElementById('submitBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            
+            options.forEach(opt => opt.classList.add('disabled'));
+            
+            if (selectedAnswer === question.correct) {
+                correctAnswers++;
+                answeredQuestions.add(currentQuestionIndex);
+                
+                options.forEach(opt => {
+                    if (parseInt(opt.dataset.originalIndex) === question.correct) {
+                        opt.classList.add('correct');
+                    }
+                });
+                
+                feedback.innerHTML = `
+                    <div class="feedback correct">
+                        <div class="feedback-title">✓ Correct!</div>
+                        <div>${question.explanation}</div>
+                    </div>
+                `;
+            } else {
+                incorrectAnswers++;
+                answeredQuestions.add(currentQuestionIndex);
+                
+                // Add to review queue (will appear 3-5 questions later)
+                const questionsUntilReview = Math.floor(Math.random() * 3) + 3;
+                const reviewPosition = Math.min(currentQuestionIndex + questionsUntilReview, quizData.length - 1);
+                reviewQueue.push({
+                    question: question,
+                    reviewAfter: reviewPosition
+                });
+                
+                options.forEach(opt => {
+                    const originalIndex = parseInt(opt.dataset.originalIndex);
+                    if (originalIndex === selectedAnswer) {
+                        opt.classList.add('incorrect');
+                    }
+                    if (originalIndex === question.correct) {
+                        opt.classList.add('correct');
+                    }
+                });
+                
+                feedback.innerHTML = `
+                    <div class="feedback incorrect">
+                        <div class="feedback-title">✗ Incorrect</div>
+                        <div><strong>Correct Answer:</strong> ${question.options[question.correct]}<br><br>${question.explanation}<br><br><em>This question will appear again later for review.</em></div>
+                    </div>
+                `;
+            }
+            
+            submitBtn.style.display = 'none';
+            nextBtn.style.display = 'block';
+            updateStats();
+            saveProgress();
+        }
+        
+        function nextQuestion() {
+            // Check if there's a review question to insert
+            const reviewItem = reviewQueue.find(item => item.reviewAfter === currentQuestionIndex);
+            
+            if (reviewItem) {
+                reviewQueue = reviewQueue.filter(item => item !== reviewItem);
+                quizData.splice(currentQuestionIndex + 1, 0, reviewItem.question);
+            }
+            
+            isAnswered = false;
+            selectedAnswer = null;
+            currentQuestionIndex++;
+            
+            displayQuestion();
+        }
+        
+        function updateStats() {
+            const answered = answeredQuestions.size;
+            const total = getTotalQuestions();
+            const progress = (answered / total) * 100;
+            
+            document.getElementById('questionCounter').textContent = `Question ${answered + 1} of ${total}`;
+            document.getElementById('scoreDisplay').textContent = `Score: ${correctAnswers}/${answered}`;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('correctCount').textContent = correctAnswers;
+            document.getElementById('incorrectCount').textContent = incorrectAnswers;
+            document.getElementById('reviewCount').textContent = reviewQueue.length;
+        }
+        
+        function showResults() {
+            const total = answeredQuestions.size;
+            const percentage = Math.round((correctAnswers / total) * 100);
+            const container = document.getElementById('quizContainer');
+            const resultsContainer = document.getElementById('resultsContainer');
+            
+            container.classList.add('hidden');
+            resultsContainer.classList.remove('hidden');
+            
+            let performanceMessage = '';
+            if (percentage >= 95) performanceMessage = '🏆 Outstanding!';
+            else if (percentage >= 85) performanceMessage = '🌟 Excellent!';
+            else if (percentage >= 75) performanceMessage = '👍 Very Good!';
+            else if (percentage >= 65) performanceMessage = '📚 Good!';
+            else performanceMessage = '📖 Keep Studying!';
+            
+            resultsContainer.innerHTML = `
+                <div class="results-card">
+                    <h2>${performanceMessage}</h2>
+                    <div class="score-display">${percentage}%</div>
+                    <div class="results-stats">
+                        <div class="result-stat">
+                            <div class="result-stat-value">${correctAnswers}</div>
+                            <div class="result-stat-label">Correct</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-stat-value">${incorrectAnswers}</div>
+                            <div class="result-stat-label">Incorrect</div>
+                        </div>
+                        <div class="result-stat">
+                            <div class="result-stat-value">${total}</div>
+                            <div class="result-stat-label">Total Questions</div>
+                        </div>
+                    </div>
+                    <button class="btn btn-primary" onclick="restartQuiz()">Start New Quiz</button>
+                </div>
+            `;
+            
+            clearProgress();
+        }
+        
+        function restartQuiz() {
+            clearProgress();
+            location.reload();
+        }
+        
+        // Initialize
+        loadProgress();
+        displayQuestion();
+    </script>
+</body>
+</html>
